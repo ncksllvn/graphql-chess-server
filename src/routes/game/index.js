@@ -1,18 +1,15 @@
+const fs = require('fs');
+const path = require('path');
+
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 
 // Construct a schema, using GraphQL schema language
-const schema = buildSchema(`
-  type RandomDie {
-    numSides: Int!
-    rollOnce: Int!
-    roll(numRolls: Int!): [Int]
-  }
-
-  type Query {
-    getDie(numSides: Int): RandomDie
-  }
-`);
+const schema = buildSchema(
+  fs.readFileSync(
+    path.join(__dirname, 'schema.graphql')
+  ).toString()
+)
 
 // This class implements the RandomDie GraphQL type
 class RandomDie {
