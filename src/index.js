@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.use('/index', require('./routes/index'))
+app.use('/', require('./routes/index'))
 app.use('/game', require('./routes/game'))
 
 app.listen(4000);
