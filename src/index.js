@@ -2,11 +2,11 @@ require('dotenv').config()
 
 const express = require('express');
 
-function main() {
+async function main() {
   const app = express();
 
+  app.use('/game', await require('./routes/game')())
   app.use('/', require('./routes/index'))
-  app.use('/game', require('./routes/game'))
 
   app.listen(4000);
 
