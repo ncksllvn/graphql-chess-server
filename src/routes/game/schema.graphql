@@ -1,9 +1,9 @@
-type RandomDie {
+type Game {
   numSides: Int!
   rollOnce: Int!
   roll(numRolls: Int!): [Int]
 }
 
 type Query {
-  getDie(numSides: Int): RandomDie
+  getDie(numSides: Int): Game
 }
