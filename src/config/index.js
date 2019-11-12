@@ -1,7 +1,7 @@
 const path = require('path');
 
-const CONFIG = {
+const config = {
   ENGINE: path.join(__dirname, '../engines', process.env.ENGINE)
 }
 
-module.exports = CONFIG
+module.exports = config
