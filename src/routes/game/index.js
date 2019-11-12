@@ -11,29 +11,12 @@ const schema = buildSchema(
   ).toString()
 )
 
-// This class implements the RandomDie GraphQL type
-class RandomDie {
-  constructor(numSides) {
-    this.numSides = numSides;
-  }
-
-  rollOnce() {
-    return 1 + Math.floor(Math.random() * this.numSides);
-  }
-
-  roll({numRolls}) {
-    var output = [];
-    for (var i = 0; i < numRolls; i++) {
-      output.push(this.rollOnce());
-    }
-    return output;
-  }
-}
+const Game = require('./Game')
 
 // The root provides the top-level API endpoints
 const root = {
   getDie: function ({numSides}) {
-    return new RandomDie(numSides || 6);
+    return new Game(numSides || 6);
   }
 }
 
