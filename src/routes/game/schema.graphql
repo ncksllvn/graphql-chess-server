@@ -1,9 +1,20 @@
+input GameInput {
+  fen: String
+  move: String
+}
+
 type Game {
-  numSides: Int!
-  rollOnce: Int!
-  roll(numRolls: Int!): [Int]
+  fen: String
+  ascii: String
+  moves: [String]
+  inCheck: Boolean
+  history: [String]
 }
 
 type Query {
-  getDie(numSides: Int): Game
+  getGame(fen: String): Game
+}
+
+type Mutation {
+  updateGame(input: GameInput): Game
 }

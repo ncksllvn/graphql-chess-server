@@ -2,9 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
-const Engine = require('uci')
-
-const config = require('../../config')
 
 const schema = buildSchema(
   fs.readFileSync(
@@ -15,20 +12,22 @@ const schema = buildSchema(
 const Game = require('./Game')
 
 async function gameController() {
-  const engine = new Engine(config.ENGINE)
-
-  await engine.runProcess()
-
   const root = {
-    getDie: function ({numSides}) {
-      return new Game(numSides || 6);
+    getGame({ fen }) {
+      return new Game(fen)
+    },
+
+    updateGame({ input: { fen, move } }) {
+      const game = new Game(fen)
+      game.move(move)
+      return game
     }
   }
 
   return graphqlHTTP({
     schema: schema,
     rootValue: root,
-    graphiql: true,
+    graphiql: true
   });
 }
 

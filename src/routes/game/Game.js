@@ -1,18 +1,32 @@
+const Chess = require('chess.js').Chess
+
 class Game {
-  constructor(numSides) {
-    this.numSides = numSides;
+  constructor(fen) {
+    this.chess = new Chess(fen)
   }
 
-  rollOnce() {
-    return 1 + Math.floor(Math.random() * this.numSides);
+  ascii() {
+    return this.chess.ascii()
   }
 
-  roll({numRolls}) {
-    var output = [];
-    for (var i = 0; i < numRolls; i++) {
-      output.push(this.rollOnce());
-    }
-    return output;
+  fen() {
+    return this.chess.fen()
+  }
+
+  moves() {
+    return this.chess.moves()
+  }
+
+  inCheck() {
+    return this.chess.in_check()
+  }
+
+  history() {
+    return this.chess.history()
+  }
+
+  move(move) {
+    this.chess.move(move)
   }
 }
 
