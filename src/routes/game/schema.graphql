@@ -1,20 +1,26 @@
-input GameInput {
-  fen: String
-  move: String
-}
-
 type Game {
-  fen: String
   ascii: String
-  moves: [String]
+  fen: String
+  gameOver: Boolean
   inCheck: Boolean
-  history: [String]
+  inCheckmate: Boolean
+  inDraw: Boolean
+  inStalemate: Boolean
+  inThreefoldRepetition: Boolean
+  insufficientMaterial: Boolean
+  moves: [String]
+  turn: String
 }
 
 type Query {
   getGame(fen: String): Game
 }
 
+input UpdateGameInput {
+  fen: String
+  move: String
+}
+
 type Mutation {
-  updateGame(input: GameInput): Game
+  updateGame(input: UpdateGameInput): Game
 }
