@@ -1,4 +1,4 @@
-const Chess = require('chess.js').Chess
+const { Chess } = require('chess.js')
 
 class Game {
   constructor(fen, engine) {
@@ -62,7 +62,6 @@ class Game {
   validateFen({ fen }) {
     return this.chess.validate_fen(fen)
   }
-
 }
 
 module.exports = Game
