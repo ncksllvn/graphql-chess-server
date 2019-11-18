@@ -4,7 +4,7 @@ const config = require('../config')
 const engine = new Engine(config.ENGINE)
 
 function initialize() {
-  engine.init()
+  return engine.init()
 }
 
 async function getBestMove(fen, depth = 1) {
