@@ -1,22 +1,21 @@
 const { Engine } = require('node-uci')
 const config = require('../config')
 
-class AI {
-  constructor() {
-    this.engine = new Engine(config.ENGINE)
-  }
+const engine = new Engine(config.ENGINE)
 
-  initialize() {
-    return this.engine.init()
-  }
-
-  async getBestMove(fen, depth = 1) {
-    const result = await this.engine.chain()
-      .position(fen)
-      .go({ depth })
-
-    return result.bestmove
-  }
+function initialize() {
+  engine.init()
 }
 
-module.exports = new AI()
+async function getBestMove(fen, depth = 1) {
+  const result = await engine.chain()
+    .position(fen)
+    .go({ depth })
+
+  return result.bestmove
+}
+
+module.exports = {
+  initialize,
+  getBestMove
+}
