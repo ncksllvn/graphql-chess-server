@@ -1,5 +1,4 @@
 const Chess = require('chess.js').Chess
-const engine = require('../../utilities/engine')
 
 class Game {
   constructor(fen, engine) {
@@ -11,8 +10,8 @@ class Game {
     return this.chess.ascii()
   }
 
-  clear() {
-    this.chess.clear()
+  bestMove() {
+    return this.engine.getBestMove(this.fen())
   }
 
   fen() {
@@ -21,14 +20,6 @@ class Game {
 
   gameOver() {
     return this.chess.game_over()
-  }
-
-  get({ square }) {
-    return this.chess.get(square)
-  }
-
-  history() {
-    return this.chess.history()
   }
 
   inCheck() {
@@ -51,10 +42,6 @@ class Game {
     return this.chess.in_threefold_repetition()
   }
 
-  header({ headers }) {
-    this.chess.header(headers)
-  }
-
   insufficientMaterial() {
     return this.chess.insufficient_material()
   }
@@ -64,41 +51,18 @@ class Game {
   }
 
   moves() {
-    return this.chess.moves({ verbose })
-  }
-
-  put({ piece, square }) {
-    return this.chess.put(piece, square)
-  }
-
-  remove({ square }) {
-    return this.chess.remove(square)
-  }
-
-  reset() {
-    this.chess.reset()
-  }
-
-  squareColor({ square }) {
-    return this.chess.square_color(square)
+    const moves = this.chess.moves({ verbose: true })
+    return moves.map(move => `${move.from}${move.to}`)
   }
 
   turn() {
     return this.chess.turn()
   }
 
-  undo() {
-    return this.chess.undo()
-  }
-
   validateFen({ fen }) {
     return this.chess.validate_fen(fen)
   }
 
-  async bestMove() {
-    const result = await this.engine.getBestMove(this.fen())
-    return result
-  }
 }
 
 module.exports = Game
