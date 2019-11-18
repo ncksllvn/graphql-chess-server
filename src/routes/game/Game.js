@@ -58,10 +58,6 @@ class Game {
   turn() {
     return this.chess.turn()
   }
-
-  validateFen({ fen }) {
-    return this.chess.validate_fen(fen)
-  }
 }
 
 module.exports = Game
