@@ -1,7 +1,9 @@
 const Chess = require('chess.js').Chess
+const engine = require('../../utilities/engine')
 
 class Game {
-  constructor(fen) {
+  constructor(fen, engine) {
+    this.engine = engine
     this.chess = new Chess(fen)
   }
 
@@ -91,6 +93,11 @@ class Game {
 
   validateFen({ fen }) {
     return this.chess.validate_fen(fen)
+  }
+
+  async bestMove() {
+    const result = await this.engine.getBestMove(this.fen())
+    return result
   }
 }
 

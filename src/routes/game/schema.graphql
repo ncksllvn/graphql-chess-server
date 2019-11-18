@@ -10,6 +10,7 @@ type Game {
   insufficientMaterial: Boolean
   moves: [String]
   turn: String
+  bestMove: String
 }
 
 type Query {
