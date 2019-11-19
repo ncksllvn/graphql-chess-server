@@ -3,14 +3,13 @@ const path = require('path');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 const engine = require('../../utilities/engine')
+const Game = require('./Game')
 
 const schema = buildSchema(
   fs.readFileSync(
     path.join(__dirname, 'schema.graphql')
   ).toString()
 )
-
-const Game = require('./Game')
 
 async function gameController() {
   await engine.initialize()
