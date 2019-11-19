@@ -46,13 +46,12 @@ class Game {
     return this.chess.insufficient_material()
   }
 
-  move({ move }) {
+  move(move) {
     this.chess.move(move)
   }
 
   moves() {
-    const moves = this.chess.moves({ verbose: true })
-    return moves.map(move => `${move.from}${move.to}`)
+    return this.chess.moves({ verbose: true })
   }
 
   turn() {

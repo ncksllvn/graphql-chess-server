@@ -1,5 +1,17 @@
+type Move {
+  captured: Boolean
+  color: String
+  from: String!
+  flags: String
+  piece: String
+  promotion: Boolean
+  san: String
+  to: String!
+}
+
 type Game {
   ascii: String
+  bestMove: String
   fen: String
   gameOver: Boolean
   inCheck: Boolean
@@ -8,18 +20,23 @@ type Game {
   inStalemate: Boolean
   inThreefoldRepetition: Boolean
   insufficientMaterial: Boolean
-  moves: [String]
+  moves: [Move]
   turn: String
-  bestMove: String
 }
 
 type Query {
   getGame(fen: String): Game
 }
 
+input MoveInput {
+  from: String!
+  to: String!
+  promotion: String
+}
+
 input UpdateGameInput {
-  fen: String
-  move: String
+  fen: String!
+  move: MoveInput
 }
 
 type Mutation {
