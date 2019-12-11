@@ -15,11 +15,11 @@ async function gameController() {
   await engine.initialize()
 
   const root = {
-    getGame({ fen }) {
+    game({ fen }) {
       return new Game(fen, engine)
     },
 
-    updateGame({ input: { fen, move } }) {
+    makeMove({ input: { fen, move } }) {
       const game = new Game(fen, engine)
       game.move(move)
       return game

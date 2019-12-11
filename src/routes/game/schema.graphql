@@ -25,7 +25,7 @@ type Game {
 }
 
 type Query {
-  getGame(fen: String): Game
+  game(fen: String): Game
 }
 
 input MoveInput {
@@ -34,11 +34,11 @@ input MoveInput {
   promotion: String
 }
 
-input UpdateGameInput {
+input MakeMoveInput {
   fen: String!
   move: MoveInput
 }
 
 type Mutation {
-  updateGame(input: UpdateGameInput): Game
+  makeMove(input: MakeMoveInput): Game
 }
