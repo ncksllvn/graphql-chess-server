@@ -7,10 +7,7 @@ async function main() {
 
   app.use('/game', await require('./routes/game')())
   app.use('/', require('./routes/index'))
-
   app.listen(4000);
-
-  console.log('Running a GraphQL API server at localhost:4000/graphql');
 }
 
 module.exports = main
