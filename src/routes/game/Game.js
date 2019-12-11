@@ -14,6 +14,21 @@ class Game {
     return this.engine.getBestMove(this.fen())
   }
 
+  constants() {
+    return {
+      BISHOP: this.chess.BISHOP,
+      BLACK: this.chess.BLACK,
+      FLAGS: this.chess.FLAGS,
+      KING: this.chess.KING,
+      KNIGHT: this.chess.KNIGHT,
+      PAWN: this.chess.PAWN,
+      QUEEN: this.chess.QUEEN,
+      ROOK: this.chess.ROOK,
+      SQUARES: this.chess.SQUARES,
+      WHITE: this.chess.WHITE
+    }
+  }
+
   fen() {
     return this.chess.fen()
   }

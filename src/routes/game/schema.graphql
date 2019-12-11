@@ -1,3 +1,26 @@
+type Flags {
+  NORMAL: String,
+  CAPTURE: String,
+  BIG_PAWN: String,
+  EP_CAPTURE: String,
+  PROMOTION: String,
+  KSIDE_CASTLE: String,
+  QSIDE_CASTLE: String
+}
+
+type Constants {
+  BISHOP: String,
+  BLACK: String,
+  FLAGS: Flags,
+  KING: String,
+  KNIGHT: String,
+  PAWN: String,
+  QUEEN: String,
+  ROOK: String,
+  SQUARES: [String],
+  WHITE: String
+}
+
 type Move {
   captured: Boolean
   color: String
@@ -12,6 +35,7 @@ type Move {
 type Game {
   ascii: String
   bestMove: String
+  constants: Constants
   fen: String
   gameOver: Boolean
   inCheck: Boolean
