@@ -22,10 +22,11 @@
   "homepage": "https://github.com/ncksllvn/chess-express#readme",
   "dependencies": {
     "chess.js": "^0.10.2",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
-    "node-uci": "^1.3.1"
+    "node-uci": "^1.3.4"
   }
 }
