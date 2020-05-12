@@ -20,7 +20,8 @@ async function getEngine() {
   debug('created')
 
   try {
-    engine.init()
+    debug('initializing...')
+    await engine.init()
     debug('initialized')
     return {
       getBestMove: getBestMove(engine)
