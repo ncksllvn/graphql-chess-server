@@ -1,3 +1,5 @@
+enum PROMOTIONS { q r b n }
+
 type Flags {
   NORMAL: String,
   CAPTURE: String,
@@ -27,7 +29,7 @@ type Move {
   from: String!
   flags: String
   piece: String
-  promotion: Boolean
+  promotion: PROMOTIONS
   san: String
   to: String!
 }
@@ -55,7 +57,7 @@ type Query {
 input MoveInput {
   from: String!
   to: String!
-  promotion: String
+  promotion: PROMOTIONS
 }
 
 input MakeMoveInput {
