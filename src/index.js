@@ -6,7 +6,7 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 
-const engine = require('./utilities/engine')
+const getEngine = require('./utilities/engine')
 const Game = require('./models/Game')
 
 const schema = buildSchema(
@@ -17,27 +17,27 @@ const schema = buildSchema(
 
 async function main() {
   const app = express()
+  const engine = await getEngine()
 
-  await engine.initialize()
+  const rootValue = {
+    game({ fen }) {
+      return new Game(fen, engine)
+    },
+    makeMove({ input: { fen, move } }) {
+      const game = new Game(fen, engine)
+      game.move(move)
+      return game
+    }
+  }
 
-  app.use('/',
-    graphqlHTTP({
-      graphiql: true,
-      schema,
-      rootValue: {
-        game({ fen }) {
-          return new Game(fen, engine)
-        },
-        makeMove({ input: { fen, move } }) {
-          const game = new Game(fen, engine)
-          game.move(move)
-          return game
-        }
-      },
-    })
-  )
+  const routeHandler = graphqlHTTP({
+    graphiql: true,
+    schema,
+    rootValue,
+  })
 
-  app.listen(4000);
+  app.use('/', routeHandler)
+  app.listen(4000)
 }
 
 module.exports = main

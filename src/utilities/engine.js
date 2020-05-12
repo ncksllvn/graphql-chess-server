@@ -1,21 +1,34 @@
 const { Engine } = require('node-uci')
+const debug = require('debug')('game:engine')
 const config = require('../config')
 
-const engine = new Engine(config.ENGINE)
+function getBestMove(engine) {
+  return async (fen, depth = 1) => {
+    const result = await engine.chain()
+      .position(fen)
+      .go({ depth })
 
-function initialize() {
-  return engine.init()
+    return result.bestmove
+  }
 }
 
-async function getBestMove(fen, depth = 1) {
-  const result = await engine.chain()
-    .position(fen)
-    .go({ depth })
+async function getEngine() {
+  debug(`creating from "${config.ENGINE}"...`)
 
-  return result.bestmove
+  const engine = new Engine(config.ENGINE)
+
+  debug('created')
+
+  try {
+    engine.init()
+    debug('initialized')
+    return {
+      getBestMove: getBestMove(engine)
+    }
+  } catch(err) {
+    debug('failed to initialize')
+    throw err
+  }
 }
 
-module.exports = {
-  initialize,
-  getBestMove
-}
+module.exports = getEngine
