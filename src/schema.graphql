@@ -1,6 +1,21 @@
+"""
+Represents the game pieces
+"""
 enum PIECE { r n b q k }
+
+"""
+Represents the piece colors
+"""
 enum COLOR { w b }
+
+"""
+Represents various game flags
+"""
 enum FLAG { n b e c p k q }
+
+"""
+Represents the game squares represented by column/row
+"""
 enum SQUARE {
   a8 b8 c8 d8 e8 f8 g8 h8
   a7 b7 c7 d7 e7 f7 g7 h7
@@ -12,6 +27,9 @@ enum SQUARE {
   a1 b1 c1 d1 e1 f1 g1 h1
 }
 
+"""
+Represents a mapping of flag constants to the enum values
+"""
 type Flags {
   NORMAL: FLAG,
   CAPTURE: FLAG,
@@ -22,6 +40,9 @@ type Flags {
   QSIDE_CASTLE: FLAG
 }
 
+"""
+Represents a mapping of various constants to the enum values
+"""
 type Constants {
   BISHOP: PIECE,
   BLACK: COLOR,
@@ -35,6 +56,9 @@ type Constants {
   WHITE: COLOR
 }
 
+"""
+Describes a piece's movement to and from a square
+"""
 type Move {
   captured: PIECE
   color: COLOR
@@ -46,37 +70,103 @@ type Move {
   to: SQUARE!
 }
 
+"""
+Describes a game of chess and the associated board
+"""
 type Game {
+  """
+  Returns a string containing an ASCII diagram of the current position.
+  """
   ascii: String
+
+  """
+  Returns the best move as calculated by the game engine
+  """
   bestMove: String
+
+  """
+  Return the various game constants
+  """
   constants: Constants
+
+  """
+  Returns the FEN string for the current position.
+  """
   fen: String
+
+  """
+  Returns true if the game has ended via checkmate, stalemate, draw, threefold repetition, or insufficient material. Otherwise, returns false.
+  """
   gameOver: Boolean
+
+  """
+  Returns true or false if the side to move is in check.
+  """
   inCheck: Boolean
+
+  """
+  Returns true or false if the side to move has been checkmated.
+  """
   inCheckmate: Boolean
+
+  """
+  Returns true or false if the game is drawn (50-move rule or insufficient material).
+  """
   inDraw: Boolean
+
+  """
+  Returns true or false if the side to move has been stalemated.
+  """
   inStalemate: Boolean
+
+  """
+  Returns true or false if the current board position has occurred three or more times.
+  """
   inThreefoldRepetition: Boolean
+
+  """
+  Returns true if the game is drawn due to insufficient material (K vs. K, K vs. KB, or K vs. KN) otherwise false.
+  """
   insufficientMaterial: Boolean
+
+  """
+  Returns a list of legal moves from the current position.
+  """
   moves: [Move]
+
+  """
+  Returns the current side to move.
+  """
   turn: COLOR
 }
 
+"""
+Retrieve game data via FEN (Forsyth–Edwards Notation)
+"""
 type Query {
   game(fen: String): Game
 }
 
+"""
+An input representing a move's position, destination, a promotion (if applicable)
+"""
 input MoveInput {
   from: SQUARE!
   to: SQUARE!
   promotion: PIECE
 }
 
+"""
+An input representing a board via its FEN string and a move to apply to that board
+"""
 input MakeMoveInput {
   fen: String!
   move: MoveInput!
 }
 
 type Mutation {
+  """
+  Apply a move to a game
+  """
   makeMove(input: MakeMoveInput): Game
 }
