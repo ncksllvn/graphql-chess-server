@@ -28,7 +28,7 @@ enum SQUARE {
 }
 
 """
-Represents a mapping of flag constants to the enum values
+Represents a mapping of flag constants to their enum values
 """
 type Flags {
   NORMAL: FLAG,
@@ -41,7 +41,7 @@ type Flags {
 }
 
 """
-Represents a mapping of various constants to the enum values
+Represents a mapping of various constants to their enum values
 """
 type Constants {
   BISHOP: PIECE,
@@ -85,7 +85,7 @@ type Game {
   bestMove: String
 
   """
-  Return the various game constants
+  Return the mapping of the various game constants to their enum values
   """
   constants: Constants
 
