@@ -15,16 +15,14 @@ function getBestMove(engine) {
 }
 
 async function getEngine() {
-  log(`creating from "${config.ENGINE}"...`)
-
+  log(`spawning process from "${config.ENGINE}"...`)
   const engine = new Engine(config.ENGINE)
-
-  log('created')
+  log('spawned!')
 
   try {
     log('initializing...')
     await engine.init()
-    log('initialized')
+    log('initialized!')
     return {
       getBestMove: getBestMove(engine)
     }
