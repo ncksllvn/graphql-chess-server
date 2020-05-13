@@ -61,10 +61,10 @@ Describes a piece's movement to and from a square
 """
 type Move {
   captured: PIECE
-  color: COLOR
+  color: COLOR!
   from: SQUARE!
   flags: String
-  piece: PIECE
+  piece: PIECE!
   promotion: PIECE
   san: String
   to: SQUARE!
@@ -82,7 +82,7 @@ type Game {
   """
   Returns the best move as calculated by the game engine
   """
-  bestMove: String
+  bestMove: Move
 
   """
   Return the mapping of the various game constants to their enum values

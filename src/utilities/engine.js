@@ -10,7 +10,15 @@ function getBestMove(engine) {
       .position(fen)
       .go({ depth })
 
-    return result.bestmove
+    const { bestmove: bestMove } = result
+
+    log(`calcuated best move as ${bestMove}`)
+
+    return {
+      from: bestMove.slice(0, 2),
+      to: bestMove.slice(2, 4),
+      piece: bestMove.slice(4)
+    }
   }
 }
 
