@@ -1,38 +1,50 @@
-enum PROMOTIONS { q r b n }
-enum TURN { w b }
+enum PIECE { r n b q k }
+enum PROMOTION { q r b n }
+enum COLOR { w b }
+enum FLAG { n b e c p k q }
+enum SQUARE {
+  a8 b8 c8 d8 e8 f8 g8 h8
+  a7 b7 c7 d7 e7 f7 g7 h7
+  a6 b6 c6 d6 e6 f6 g6 h6
+  a5 b5 c5 d5 e5 f5 g5 h5
+  a4 b4 c4 d4 e4 f4 g4 h4
+  a3 b3 c3 d3 e3 f3 g3 h3
+  a2 b2 c2 d2 e2 f2 g2 h2
+  a1 b1 c1 d1 e1 f1 g1 h1
+}
 
 type Flags {
-  NORMAL: String,
-  CAPTURE: String,
-  BIG_PAWN: String,
-  EP_CAPTURE: String,
-  PROMOTION: String,
-  KSIDE_CASTLE: String,
-  QSIDE_CASTLE: String
+  NORMAL: FLAG,
+  CAPTURE: FLAG,
+  BIG_PAWN: FLAG,
+  EP_CAPTURE: FLAG,
+  PROMOTION: FLAG,
+  KSIDE_CASTLE: FLAG,
+  QSIDE_CASTLE: FLAG
 }
 
 type Constants {
-  BISHOP: String,
-  BLACK: String,
+  BISHOP: PIECE,
+  BLACK: COLOR,
   FLAGS: Flags,
-  KING: String,
-  KNIGHT: String,
-  PAWN: String,
-  QUEEN: String,
-  ROOK: String,
-  SQUARES: [String],
-  WHITE: String
+  KING: PIECE,
+  KNIGHT: PIECE,
+  PAWN: PIECE,
+  QUEEN: PIECE,
+  ROOK: PIECE,
+  SQUARES: [SQUARE],
+  WHITE: COLOR
 }
 
 type Move {
-  captured: Boolean
-  color: String
-  from: String!
+  captured: PIECE
+  color: COLOR
+  from: SQUARE!
   flags: String
-  piece: String
-  promotion: PROMOTIONS
+  piece: PIECE
+  promotion: PROMOTION
   san: String
-  to: String!
+  to: SQUARE!
 }
 
 type Game {
@@ -48,7 +60,7 @@ type Game {
   inThreefoldRepetition: Boolean
   insufficientMaterial: Boolean
   moves: [Move]
-  turn: TURN
+  turn: COLOR
 }
 
 type Query {
@@ -56,14 +68,14 @@ type Query {
 }
 
 input MoveInput {
-  from: String!
-  to: String!
-  promotion: PROMOTIONS
+  from: SQUARE!
+  to: SQUARE!
+  promotion: PROMOTION
 }
 
 input MakeMoveInput {
   fen: String!
-  move: MoveInput
+  move: MoveInput!
 }
 
 type Mutation {
