@@ -1,4 +1,5 @@
 enum PROMOTIONS { q r b n }
+enum TURN { w b }
 
 type Flags {
   NORMAL: String,
@@ -47,7 +48,7 @@ type Game {
   inThreefoldRepetition: Boolean
   insufficientMaterial: Boolean
   moves: [Move]
-  turn: String
+  turn: TURN
 }
 
 type Query {
