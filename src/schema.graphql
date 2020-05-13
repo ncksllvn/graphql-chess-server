@@ -1,5 +1,4 @@
 enum PIECE { r n b q k }
-enum PROMOTION { q r b n }
 enum COLOR { w b }
 enum FLAG { n b e c p k q }
 enum SQUARE {
@@ -42,7 +41,7 @@ type Move {
   from: SQUARE!
   flags: String
   piece: PIECE
-  promotion: PROMOTION
+  promotion: PIECE
   san: String
   to: SQUARE!
 }
@@ -70,7 +69,7 @@ type Query {
 input MoveInput {
   from: SQUARE!
   to: SQUARE!
-  promotion: PROMOTION
+  promotion: PIECE
 }
 
 input MakeMoveInput {
