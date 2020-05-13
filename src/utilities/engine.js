@@ -10,27 +10,42 @@ function getBestMove(engine) {
       .position(fen)
       .go({ depth })
 
-    const { bestmove: bestMove } = result
+    const {
+      bestmove: bestMove
+    } = result
 
     log(`calcuated best move as ${bestMove}`)
 
+    const [
+      fromColumn,
+      fromRow,
+      toColumn,
+      toRow,
+      piece
+    ] = bestMove
+
     return {
-      from: bestMove.slice(0, 2),
-      to: bestMove.slice(2, 4),
-      piece: bestMove.slice(4)
+      from: `${fromColumn}${fromRow}`,
+      to: `${toColumn}${toRow}`,
+      piece
     }
   }
 }
 
 async function getEngine() {
   log(`spawning process from "${config.ENGINE}"...`)
+
   const engine = new Engine(config.ENGINE)
+
   log('spawned!')
 
   try {
     log('initializing...')
+
     await engine.init()
+
     log('initialized!')
+
     return {
       getBestMove: getBestMove(engine)
     }
