@@ -1,5 +1,5 @@
 const { Engine } = require('node-uci')
-const debug = require('debug')('game:engine')
+const log = require('./log')('engine')
 const config = require('../config')
 
 function getBestMove(engine) {
@@ -13,21 +13,21 @@ function getBestMove(engine) {
 }
 
 async function getEngine() {
-  debug(`creating from "${config.ENGINE}"...`)
+  log(`creating from "${config.ENGINE}"...`)
 
   const engine = new Engine(config.ENGINE)
 
-  debug('created')
+  log('created')
 
   try {
-    debug('initializing...')
+    log('initializing...')
     await engine.init()
-    debug('initialized')
+    log('initialized')
     return {
       getBestMove: getBestMove(engine)
     }
   } catch(err) {
-    debug('failed to initialize')
+    log('failed to initialize')
     throw err
   }
 }
