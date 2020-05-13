@@ -6,8 +6,9 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 
-const getEngine = require('./utilities/engine')
 const Game = require('./models/Game')
+const getEngine = require('./utilities/engine')
+const log = require('./utilities/log')('root')
 
 const schema = buildSchema(
   fs.readFileSync(
@@ -21,9 +22,11 @@ async function main() {
 
   const rootValue = {
     game({ fen }) {
+      log(`executing game with fen "${fen}"`)
       return new Game(fen, engine)
     },
     makeMove({ input: { fen, move } }) {
+      log(`executing makeMove with fen "${fen}", move "${move}"`)
       const game = new Game(fen, engine)
       game.move(move)
       return game

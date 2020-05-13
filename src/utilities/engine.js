@@ -4,6 +4,8 @@ const config = require('../config')
 
 function getBestMove(engine) {
   return async (fen, depth = 1) => {
+    log(`calculating best move for FEN ${fen} at depth ${depth}`)
+
     const result = await engine.chain()
       .position(fen)
       .go({ depth })
