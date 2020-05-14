@@ -1,7 +1,7 @@
 """
 Represents the game pieces
 """
-enum PIECE { r n b q k }
+enum PIECE { p r n b q k }
 
 """
 Represents the piece colors
