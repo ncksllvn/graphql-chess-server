@@ -25,7 +25,7 @@ async function main() {
   await engine.init()
 
   const routeHandler = graphqlHTTP({
-    rootValue: await getRoot(engine),
+    rootValue: getRoot(engine),
     graphiql: true,
     schema
   })
