@@ -47,7 +47,10 @@ async function getEngine() {
     log('initialized!')
 
     return {
-      getBestMove: getBestMove(engine)
+      getBestMove: getBestMove(engine),
+      quit() {
+        return engine.quit()
+      }
     }
   } catch(err) {
     log('failed to initialize')
