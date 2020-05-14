@@ -68,10 +68,10 @@ Describes a piece's movement to and from a square
 """
 type Move {
   captured: PIECE
-  color: COLOR!
+  color: COLOR
   from: SQUARE!
   flags: String
-  piece: PIECE!
+  piece: PIECE
   promotion: PIECE
   san: String
   to: SQUARE!
