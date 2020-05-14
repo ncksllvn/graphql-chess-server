@@ -1,4 +1,5 @@
 const { Chess } = require('chess.js')
+const log = require('../utilities/log')('model/Game')
 
 class Game {
   constructor(fen, engine) {
@@ -10,8 +11,35 @@ class Game {
     return this.chess.ascii()
   }
 
-  bestMove() {
-    return this.engine.getBestMove(this.fen())
+  async bestMove() {
+    const fen = this.fen()
+    const depth = 1
+
+    log(`calculating best move for FEN ${fen} at depth ${depth}`)
+
+    const result = await this.engine.chain()
+      .position(fen)
+      .go({ depth })
+
+    const {
+      bestmove: bestMove
+    } = result
+
+    log(`calcuated best move as ${bestMove}`)
+
+    const [
+      fromColumn,
+      fromRow,
+      toColumn,
+      toRow,
+      ...flags
+    ] = bestMove
+
+    return {
+      from: `${fromColumn}${fromRow}`,
+      to: `${toColumn}${toRow}`,
+      flags: flags.join('')
+    }
   }
 
   constants() {
