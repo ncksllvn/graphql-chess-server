@@ -1,7 +1,7 @@
 const Game = require('./models/Game')
 const log = require('./utilities/log')('root')
 
-async function getRoot(engine) {
+function getRoot(engine) {
   return {
     game({ fen }) {
       log(`executing game with fen "${fen}"`)
