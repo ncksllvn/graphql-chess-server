@@ -10,11 +10,18 @@ enum COLOR { w b }
 
 """
 Represents various game flags
+n - a non-capture
+b - a pawn push of two squares
+e - an en passant capture
+c - a standard capture
+p - a promotion
+k - kingside castling
+q - queenside castling
 """
 enum FLAG { n b e c p k q }
 
 """
-Represents the game squares represented by column/row
+Represents the squares on the board by column/row
 """
 enum SQUARE {
   a8 b8 c8 d8 e8 f8 g8 h8
