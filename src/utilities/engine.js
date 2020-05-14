@@ -21,13 +21,13 @@ function getBestMove(engine) {
       fromRow,
       toColumn,
       toRow,
-      piece
+      ...flags
     ] = bestMove
 
     return {
       from: `${fromColumn}${fromRow}`,
       to: `${toColumn}${toRow}`,
-      piece
+      flags: flags.join('')
     }
   }
 }
