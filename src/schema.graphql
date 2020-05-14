@@ -171,6 +171,9 @@ input MakeMoveInput {
   move: MoveInput!
 }
 
+"""
+Retrieve game data derived by a moved applied to a board FEN
+"""
 type Mutation {
   """
   Apply a move to a game
