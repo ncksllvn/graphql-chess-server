@@ -80,7 +80,7 @@ type Move {
 """
 Describes a game of chess and the associated board
 """
-type Game {
+type Chess {
   """
   Returns a string containing an ASCII diagram of the current position.
   """
@@ -147,7 +147,7 @@ Retrieve game data via FEN (Forsyth–Edwards Notation)
 """
 type Query {
   constants: Constants!
-  game(fen: String): Game!
+  chess(fen: String): Chess!
 }
 
 """
@@ -174,5 +174,5 @@ type Mutation {
   """
   Apply a move to a game
   """
-  makeMove(input: MakeMoveInput): Game
+  makeMove(input: MakeMoveInput): Chess
 }

@@ -51,7 +51,7 @@ function getHandler(fen) {
   }
 }
 
-class Game {
+class Chess {
   constructor(fen, engine) {
     this.engine = engine
     return new Proxy(this, getHandler(fen))
@@ -89,4 +89,4 @@ class Game {
   }
 }
 
-module.exports = Game
+module.exports = Chess
