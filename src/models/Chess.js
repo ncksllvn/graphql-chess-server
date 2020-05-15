@@ -1,4 +1,5 @@
 const { Chess: ChessJS } = require('chess.js')
+const Analysis = require('./Analysis')
 const log = require('../utilities/log')('model/Game')
 
 const aliases = new Map([
@@ -57,35 +58,8 @@ class Chess {
     return new Proxy(this, getHandler(fen))
   }
 
-  async bestMove() {
-    const fen = this.fen
-    const depth = 1
-
-    log(`calculating best move for FEN ${fen} at depth ${depth}`)
-
-    const result = await this.engine.chain()
-      .position(fen)
-      .go({ depth })
-
-    const {
-      bestmove: bestMove
-    } = result
-
-    log(`calcuated best move as ${bestMove}`)
-
-    const [
-      fromColumn,
-      fromRow,
-      toColumn,
-      toRow,
-      ...flags
-    ] = bestMove
-
-    return {
-      from: `${fromColumn}${fromRow}`,
-      to: `${toColumn}${toRow}`,
-      flags: flags.join('')
-    }
+  async analysis() {
+    return await new Analysis(this.engine, this.fen).results()
   }
 }
 

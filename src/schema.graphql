@@ -77,6 +77,15 @@ type Move {
   to: SQUARE!
 }
 
+type AnalysisResults {
+  bestMove: Move
+  ponderMove: Move
+}
+
+type Analysis {
+  results: AnalysisResults
+}
+
 """
 Describes a game of chess and the associated board
 """
@@ -89,7 +98,9 @@ type Chess {
   """
   Returns the best move as calculated by the game engine
   """
-  bestMove: Move
+  # bestMove: Move
+
+  analysis: AnalysisResults
 
   """
   Returns the FEN string for the current position.
