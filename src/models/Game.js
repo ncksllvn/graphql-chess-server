@@ -1,48 +1,59 @@
-const { Chess } = require('chess.js')
+const { Chess: Base } = require('chess.js')
 const log = require('../utilities/log')('model/Game')
 
 class Game {
 
-  static handler = {
-    get(instance, property) {
-      const map = {
-        ascii: () => instance.chess.ascii(),
-        fen: () => instance.chess.fen(),
-        gameOver: () => instance.chess.game_over(),
-        inCheck: () => instance.chess.in_check(),
-        inCheckmate: () => instance.chess.in_checkmate(),
-        inDraw: () => instance.chess.in_draw(),
-        inStalemate: () => instance.chess.in_stalemate(),
-        inThreefoldRepetition: () => instance.chess.in_threefold_repetition(),
-        moves: () => instance.chess.moves({ verbose: true }),
-        move: (move) => instance.chess.move(move),
-        turn: () => instance.chess.turn(),
-        constants: () => {
-          return {
-            BISHOP: instance.chess.BISHOP,
-            BLACK: instance.chess.BLACK,
-            FLAGS: instance.chess.FLAGS,
-            KING: instance.chess.KING,
-            KNIGHT: instance.chess.KNIGHT,
-            PAWN: instance.chess.PAWN,
-            QUEEN: instance.chess.QUEEN,
-            ROOK: instance.chess.ROOK,
-            SQUARES: instance.chess.SQUARES,
-            WHITE: instance.chess.WHITE
-          }
+  static getHandler(fen) {
+    const chess = new Base(fen)
+    const aliases = new Map([
+      ['ascii', 'ascii'],
+      ['fen', 'fen'],
+      ['gameOver', 'game_over'],
+      ['inCheck', 'in_check'],
+      ['inCheckmate', 'in_checkmate'],
+      ['inDraw', 'in_draw'],
+      ['inStalemate', 'in_stalemate'],
+      ['insufficientMaterial', 'insufficient_material'],
+      ['inThreefoldRepetition', 'in_threefold_repetition'],
+      ['turn', 'turn'],
+    ])
+    const overrides = new Map([
+      ['moves', () => chess.moves({ verbose: true })],
+      ['move', (move) => chess.move(move)],
+      ['constants', () => {
+        return {
+          BISHOP: chess.BISHOP,
+          BLACK: chess.BLACK,
+          FLAGS: chess.FLAGS,
+          KING: chess.KING,
+          KNIGHT: chess.KNIGHT,
+          PAWN: chess.PAWN,
+          QUEEN: chess.QUEEN,
+          ROOK: chess.ROOK,
+          SQUARES: chess.SQUARES,
+          WHITE: chess.WHITE
         }
+      }]
+    ])
+
+    return {
+      get(instance, property, _receiver) {
+        if (aliases.has(property)) {
+          return Reflect.get(chess, aliases.get(property))()
+        }
+
+        if (overrides.has(property)) {
+          return overrides.get(property)(...arguments)
+        }
+
+        return Reflect.get(instance, property)
       }
-
-      if (property in map) return map[property]()
-
-      return instance[property]
     }
   }
 
   constructor(fen, engine) {
-    this.chess = new Chess(fen)
     this.engine = engine
-    return new Proxy(this, Game.handler)
+    return new Proxy(this, Game.getHandler(fen))
   }
 
   async bestMove() {
