@@ -7,6 +7,7 @@ const graphqlHTTP = require('express-graphql')
 const { buildSchema } = require('graphql')
 const { Engine } = require('node-uci')
 
+const log = require('./utilities/log')('server')
 const getRoot = require('./root')
 
 async function main() {
@@ -18,11 +19,15 @@ async function main() {
     ).toString()
   )
 
+  log('starting engine...')
+
   const engine = new Engine(
     path.join(__dirname, '../bin', process.env.ENGINE)
   )
 
   await engine.init()
+
+  log('engine ready')
 
   const routeHandler = graphqlHTTP({
     rootValue: getRoot(engine),
@@ -31,9 +36,14 @@ async function main() {
   })
 
   app.use('/', routeHandler)
-  app.listen(process.env.PORT)
+
+  const port = process.env.PORT
+  const server = app.listen(port)
+
+  log(`accepting requests on port ${port}`)
+
+  return server
 }
 
 module.exports = main
-
-if (require.main) module.exports();
+if (require.main) main()
