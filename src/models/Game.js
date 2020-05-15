@@ -1,47 +1,48 @@
 const { Chess } = require('chess.js')
 const log = require('../utilities/log')('model/Game')
 
-const handler = {
-  get(target, prop) {
-    const map = {
-      'ascii': () => target.chess.ascii(),
-      'fen': () => target.chess.fen(),
-      'gameOver': () => target.chess.game_over(),
-      'inCheck': () => target.chess.in_check(),
-      'inCheckmate': () => target.chess.in_checkmate(),
-      'inDraw': () => target.chess.in_draw(),
-      'inStalemate': () => target.chess.in_stalemate(),
-      'inThreefoldRepetition': () => target.chess.in_threefold_repetition(),
-      'moves': () => target.chess.moves({ verbose: true }),
-      'move': (move) => target.chess.move(move),
-      'turn': () => target.chess.turn(),
-      'constants': () => {
-        return {
-          BISHOP: target.chess.BISHOP,
-          BLACK: target.chess.BLACK,
-          FLAGS: target.chess.FLAGS,
-          KING: target.chess.KING,
-          KNIGHT: target.chess.KNIGHT,
-          PAWN: target.chess.PAWN,
-          QUEEN: target.chess.QUEEN,
-          ROOK: target.chess.ROOK,
-          SQUARES: target.chess.SQUARES,
-          WHITE: target.chess.WHITE
+class Game {
+
+  static handler = {
+    get(instance, property) {
+      const map = {
+        ascii: () => instance.chess.ascii(),
+        fen: () => instance.chess.fen(),
+        gameOver: () => instance.chess.game_over(),
+        inCheck: () => instance.chess.in_check(),
+        inCheckmate: () => instance.chess.in_checkmate(),
+        inDraw: () => instance.chess.in_draw(),
+        inStalemate: () => instance.chess.in_stalemate(),
+        inThreefoldRepetition: () => instance.chess.in_threefold_repetition(),
+        moves: () => instance.chess.moves({ verbose: true }),
+        move: (move) => instance.chess.move(move),
+        turn: () => instance.chess.turn(),
+        constants: () => {
+          return {
+            BISHOP: instance.chess.BISHOP,
+            BLACK: instance.chess.BLACK,
+            FLAGS: instance.chess.FLAGS,
+            KING: instance.chess.KING,
+            KNIGHT: instance.chess.KNIGHT,
+            PAWN: instance.chess.PAWN,
+            QUEEN: instance.chess.QUEEN,
+            ROOK: instance.chess.ROOK,
+            SQUARES: instance.chess.SQUARES,
+            WHITE: instance.chess.WHITE
+          }
         }
       }
+
+      if (property in map) return map[property]()
+
+      return instance[property]
     }
-
-    if (prop in map) return map[prop]()
-
-    return target[prop]
   }
-}
 
-class Game {
   constructor(fen, engine) {
     this.chess = new Chess(fen)
     this.engine = engine
-    return new Proxy(this, handler)
+    return new Proxy(this, Game.handler)
   }
 
   async bestMove() {
