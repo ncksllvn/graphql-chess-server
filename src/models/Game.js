@@ -1,4 +1,4 @@
-const { Chess: Base } = require('chess.js')
+const { Chess: ChessJS } = require('chess.js')
 const log = require('../utilities/log')('model/Game')
 
 const aliases = new Map([
@@ -16,25 +16,25 @@ const aliases = new Map([
 ])
 
 const extensions = new Map([
-  ['moves', (chess) => chess.moves({ verbose: true })],
-  ['constants', (chess) => {
+  ['moves', (chessJs) => chessJs.moves({ verbose: true })],
+  ['constants', (chessJs) => {
     return {
-      BISHOP: chess.BISHOP,
-      BLACK: chess.BLACK,
-      FLAGS: chess.FLAGS,
-      KING: chess.KING,
-      KNIGHT: chess.KNIGHT,
-      PAWN: chess.PAWN,
-      QUEEN: chess.QUEEN,
-      ROOK: chess.ROOK,
-      SQUARES: chess.SQUARES,
-      WHITE: chess.WHITE
+      BISHOP: chessJs.BISHOP,
+      BLACK: chessJs.BLACK,
+      FLAGS: chessJs.FLAGS,
+      KING: chessJs.KING,
+      KNIGHT: chessJs.KNIGHT,
+      PAWN: chessJs.PAWN,
+      QUEEN: chessJs.QUEEN,
+      ROOK: chessJs.ROOK,
+      SQUARES: chessJs.SQUARES,
+      WHITE: chessJs.WHITE
     }
   }]
 ])
 
 function getHandler(fen) {
-  const chess = new Base(fen)
+  const chess = new ChessJS(fen)
 
   return {
     get(instance, property, _receiver) {
