@@ -1,6 +1,6 @@
 const { Chess: ChessJS } = require('chess.js')
 const Analysis = require('./Analysis')
-const log = require('../utilities/log')('model/Game')
+const log = require('../utilities/log')('model/Chess')
 
 const aliases = new Map([
   ['ascii', 'ascii'],
