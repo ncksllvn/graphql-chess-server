@@ -15,7 +15,7 @@ const aliases = new Map([
   ['turn', 'turn'],
 ])
 
-const overrides = new Map([
+const extensions = new Map([
   ['moves', (chess) => chess.moves({ verbose: true })],
   ['constants', (chess) => {
     return {
@@ -42,8 +42,8 @@ function getHandler(fen) {
         return Reflect.get(chess, aliases.get(property))()
       }
 
-      if (overrides.has(property)) {
-        return overrides.get(property)(chess, ...arguments)
+      if (extensions.has(property)) {
+        return extensions.get(property)(chess, ...arguments)
       }
 
       return Reflect.get(instance, property)
