@@ -26,12 +26,12 @@ async function main() {
 
   const routeHandler = graphqlHTTP({
     rootValue: getRoot(engine),
-    graphiql: true,
+    graphiql: process.env.GRAPHIQL,
     schema
   })
 
   app.use('/', routeHandler)
-  app.listen(4000)
+  app.listen(process.env.PORT)
 }
 
 module.exports = main
