@@ -35,16 +35,16 @@ const extensions = new Map([
 ])
 
 function getHandler(fen) {
-  const chess = new ChessJS(fen)
+  const chessJs = new ChessJS(fen)
 
   return {
     get(instance, property, _receiver) {
       if (aliases.has(property)) {
-        return Reflect.get(chess, aliases.get(property))()
+        return Reflect.get(chessJs, aliases.get(property))()
       }
 
       if (extensions.has(property)) {
-        return extensions.get(property)(chess, ...arguments)
+        return extensions.get(property)(chessJs, ...arguments)
       }
 
       return Reflect.get(instance, property)
