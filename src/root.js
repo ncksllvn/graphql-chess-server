@@ -3,6 +3,10 @@ const log = require('./utilities/log')('root')
 
 function getRoot(engine) {
   return {
+    constants() {
+      return new Game().constants
+    },
+
     game({ fen }) {
       log(`executing game with fen "${fen}"`)
       return new Game(fen, engine)

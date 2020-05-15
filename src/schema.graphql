@@ -51,16 +51,16 @@ type Flags {
 Represents a mapping of various constants to their enum values
 """
 type Constants {
-  BISHOP: PIECE,
-  BLACK: COLOR,
-  FLAGS: Flags,
-  KING: PIECE,
-  KNIGHT: PIECE,
-  PAWN: PIECE,
-  QUEEN: PIECE,
-  ROOK: PIECE,
-  SQUARES: [SQUARE],
-  WHITE: COLOR
+  BISHOP: PIECE!,
+  BLACK: COLOR!,
+  FLAGS: Flags!,
+  KING: PIECE!,
+  KNIGHT: PIECE!,
+  PAWN: PIECE!,
+  QUEEN: PIECE!,
+  ROOK: PIECE!,
+  SQUARES: [SQUARE!]!,
+  WHITE: COLOR!
 }
 
 """
@@ -90,11 +90,6 @@ type Game {
   Returns the best move as calculated by the game engine
   """
   bestMove: Move
-
-  """
-  Return the mapping of the various game constants to their enum values
-  """
-  constants: Constants
 
   """
   Returns the FEN string for the current position.
@@ -151,7 +146,8 @@ type Game {
 Retrieve game data via FEN (Forsyth–Edwards Notation)
 """
 type Query {
-  game(fen: String): Game
+  constants: Constants!
+  game(fen: String): Game!
 }
 
 """
