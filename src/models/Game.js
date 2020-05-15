@@ -1,59 +1,60 @@
 const { Chess: Base } = require('chess.js')
 const log = require('../utilities/log')('model/Game')
 
-class Game {
+const aliases = new Map([
+  ['ascii', 'ascii'],
+  ['fen', 'fen'],
+  ['gameOver', 'game_over'],
+  ['inCheck', 'in_check'],
+  ['inCheckmate', 'in_checkmate'],
+  ['inDraw', 'in_draw'],
+  ['inStalemate', 'in_stalemate'],
+  ['insufficientMaterial', 'insufficient_material'],
+  ['inThreefoldRepetition', 'in_threefold_repetition'],
+  ['move', 'move'],
+  ['turn', 'turn'],
+])
 
-  static getHandler(fen) {
-    const chess = new Base(fen)
-    const aliases = new Map([
-      ['ascii', 'ascii'],
-      ['fen', 'fen'],
-      ['gameOver', 'game_over'],
-      ['inCheck', 'in_check'],
-      ['inCheckmate', 'in_checkmate'],
-      ['inDraw', 'in_draw'],
-      ['inStalemate', 'in_stalemate'],
-      ['insufficientMaterial', 'insufficient_material'],
-      ['inThreefoldRepetition', 'in_threefold_repetition'],
-      ['turn', 'turn'],
-    ])
-    const overrides = new Map([
-      ['moves', () => chess.moves({ verbose: true })],
-      ['move', (move) => chess.move(move)],
-      ['constants', () => {
-        return {
-          BISHOP: chess.BISHOP,
-          BLACK: chess.BLACK,
-          FLAGS: chess.FLAGS,
-          KING: chess.KING,
-          KNIGHT: chess.KNIGHT,
-          PAWN: chess.PAWN,
-          QUEEN: chess.QUEEN,
-          ROOK: chess.ROOK,
-          SQUARES: chess.SQUARES,
-          WHITE: chess.WHITE
-        }
-      }]
-    ])
-
+const overrides = new Map([
+  ['moves', (chess) => chess.moves({ verbose: true })],
+  ['constants', (chess) => {
     return {
-      get(instance, property, _receiver) {
-        if (aliases.has(property)) {
-          return Reflect.get(chess, aliases.get(property))()
-        }
+      BISHOP: chess.BISHOP,
+      BLACK: chess.BLACK,
+      FLAGS: chess.FLAGS,
+      KING: chess.KING,
+      KNIGHT: chess.KNIGHT,
+      PAWN: chess.PAWN,
+      QUEEN: chess.QUEEN,
+      ROOK: chess.ROOK,
+      SQUARES: chess.SQUARES,
+      WHITE: chess.WHITE
+    }
+  }]
+])
 
-        if (overrides.has(property)) {
-          return overrides.get(property)(...arguments)
-        }
+function getHandler(fen) {
+  const chess = new Base(fen)
 
-        return Reflect.get(instance, property)
+  return {
+    get(instance, property, _receiver) {
+      if (aliases.has(property)) {
+        return Reflect.get(chess, aliases.get(property))()
       }
+
+      if (overrides.has(property)) {
+        return overrides.get(property)(chess, ...arguments)
+      }
+
+      return Reflect.get(instance, property)
     }
   }
+}
 
+class Game {
   constructor(fen, engine) {
     this.engine = engine
-    return new Proxy(this, Game.getHandler(fen))
+    return new Proxy(this, getHandler(fen))
   }
 
   async bestMove() {
