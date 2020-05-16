@@ -10,7 +10,7 @@ function getRoot(engine) {
 
     constants() {
       log('constants')
-      return new Chess().constants
+      return new Chess()
     },
 
     chess({ fen }) {

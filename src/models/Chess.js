@@ -3,6 +3,16 @@ const Analysis = require('./Analysis')
 const log = require('../utilities/log')('model/Chess')
 
 const aliases = new Map([
+  ['BISHOP', 'BISHOP'],
+  ['BLACK', 'BLACK'],
+  ['FLAGS', 'FLAGS'],
+  ['KING', 'KING'],
+  ['KNIGHT', 'KNIGHT'],
+  ['PAWN', 'PAWN'],
+  ['QUEEN', 'QUEEN'],
+  ['ROOK', 'ROOK'],
+  ['SQUARES', 'SQUARES'],
+  ['WHITE', 'WHITE'],
   ['ascii', 'ascii'],
   ['fen', 'fen'],
   ['gameOver', 'game_over'],
@@ -17,37 +27,24 @@ const aliases = new Map([
 ])
 
 const extensions = new Map([
-  ['moves', (chessJs) => chessJs.moves({ verbose: true })],
-  ['constants', (chessJs) => {
-    return {
-      BISHOP: chessJs.BISHOP,
-      BLACK: chessJs.BLACK,
-      FLAGS: chessJs.FLAGS,
-      KING: chessJs.KING,
-      KNIGHT: chessJs.KNIGHT,
-      PAWN: chessJs.PAWN,
-      QUEEN: chessJs.QUEEN,
-      ROOK: chessJs.ROOK,
-      SQUARES: chessJs.SQUARES,
-      WHITE: chessJs.WHITE
-    }
-  }]
+  ['moves', (chessJs) => chessJs.moves({ verbose: true })]
 ])
 
 function getHandler(fen) {
   const chessJs = new ChessJS(fen)
 
   return {
-    get(instance, property, _receiver) {
-      if (aliases.has(property)) {
-        return Reflect.get(chessJs, aliases.get(property))(...arguments)
+    get(instance, key) {
+      if (aliases.has(key)) {
+        const prop = Reflect.get(chessJs, aliases.get(key))
+        return prop.call ? prop.call(chessJs, ...arguments) : prop
       }
 
-      if (extensions.has(property)) {
-        return extensions.get(property)(chessJs, ...arguments)
+      if (extensions.has(key)) {
+        return extensions.get(key)(chessJs, ...arguments)
       }
 
-      return Reflect.get(instance, property)
+      return Reflect.get(instance, key)
     }
   }
 }
