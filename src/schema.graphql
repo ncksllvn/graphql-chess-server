@@ -157,6 +157,7 @@ type Chess {
 Retrieve game data via FEN (Forsyth–Edwards Notation)
 """
 type Query {
+  analysis(fen: String!): Analysis!
   constants: Constants!
   chess(fen: String): Chess!
 }

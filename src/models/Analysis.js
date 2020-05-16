@@ -1,7 +1,6 @@
 const log = require('../utilities/log')('Analysis')
 
 class Analysis {
-
   static parseMove(string) {
     const [
       fromColumn,
@@ -24,6 +23,8 @@ class Analysis {
   }
 
   async results() {
+    log(`calculating moves for fen "${this.fen}`)
+
     const result = await this.engine.chain()
       .position(this.fen)
       .go({ depth: 1 })

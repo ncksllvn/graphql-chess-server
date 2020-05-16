@@ -1,8 +1,13 @@
 const Chess = require('./models/Chess')
+const Analysis = require('./models/Analysis')
 const log = require('./utilities/log')('root')
 
 function getRoot(engine) {
   return {
+    analysis({ fen }) {
+      return new Analysis(fen)
+    },
+
     constants() {
       log('constants')
       return new Chess().constants
