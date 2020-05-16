@@ -16,9 +16,9 @@ function normalizeKeys(chess) {
   const keys = Object.keys(chess)
 
   return keys.reduce((result, key) => {
-    const translated = normalization.has(key) ? normalization.get(key) : key
+    const normalized = normalization.has(key) ? normalization.get(key) : key
     return {
-      [translated]: chess[key],
+      [normalized]: chess[key],
       ...result
     }
   }, {})
@@ -30,8 +30,11 @@ function Chess(fen, engine) {
 
   return {
     ...normalized,
-    analysis: () => new Analysis(engine, normalized.fen()).results(),
-    moves: () => normalized.moves({ verbose: true })
+    engine,
+    moves: normalized.moves.bind(normalized, { verbose: true }),
+    analysis() {
+      return new Analysis(this.engine, this.fen()).results()
+    }
   }
 }
 
