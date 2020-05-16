@@ -1,4 +1,4 @@
-const { Chess } = require('chess.js')
+const { Chess: ChessJS } = require('chess.js')
 const Analysis = require('./Analysis')
 const log = require('../utilities/log')('model/Chess')
 
@@ -29,8 +29,10 @@ function get(engine, target, key) {
   }
 }
 
-module.exports = function(fen, engine) {
-  const chess = new Chess(fen)
+function Chess(fen, engine) {
+  const chess = new ChessJS(fen)
   const handler = { get: get.bind(null, engine) }
   return new Proxy(chess, handler)
 }
+
+module.exports = Chess
