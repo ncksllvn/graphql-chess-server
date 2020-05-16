@@ -1,20 +1,8 @@
-const { Chess: ChessJS } = require('chess.js')
+const { Chess } = require('chess.js')
 const Analysis = require('./Analysis')
 const log = require('../utilities/log')('model/Chess')
 
 const aliases = new Map([
-  ['BISHOP', 'BISHOP'],
-  ['BLACK', 'BLACK'],
-  ['FLAGS', 'FLAGS'],
-  ['KING', 'KING'],
-  ['KNIGHT', 'KNIGHT'],
-  ['PAWN', 'PAWN'],
-  ['QUEEN', 'QUEEN'],
-  ['ROOK', 'ROOK'],
-  ['SQUARES', 'SQUARES'],
-  ['WHITE', 'WHITE'],
-  ['ascii', 'ascii'],
-  ['fen', 'fen'],
   ['gameOver', 'game_over'],
   ['inCheck', 'in_check'],
   ['inCheckmate', 'in_checkmate'],
@@ -22,42 +10,27 @@ const aliases = new Map([
   ['inStalemate', 'in_stalemate'],
   ['insufficientMaterial', 'insufficient_material'],
   ['inThreefoldRepetition', 'in_threefold_repetition'],
-  ['move', 'move'],
-  ['turn', 'turn'],
 ])
 
-const extensions = new Map([
-  ['moves', (chessJs) => chessJs.moves({ verbose: true })]
-])
+function get(engine, target, key) {
+  if (aliases.has(key)) {
+    return Reflect.get(target, aliases.get(key))
+  }
 
-function getHandler(fen) {
-  const chessJs = new ChessJS(fen)
+  switch (key) {
+    case 'moves':
+      return target.moves({ verbose: true })
 
-  return {
-    get(target, key) {
-      if (aliases.has(key)) {
-        const prop = Reflect.get(chessJs, aliases.get(key))
-        return prop.call ? prop.call(chessJs, ...arguments) : prop
-      }
+    case 'analysis':
+      return new Analysis(engine, target.fen()).results()
 
-      if (extensions.has(key)) {
-        return extensions.get(key)(chessJs, ...arguments)
-      }
-
+    default:
       return Reflect.get(target, key)
-    }
   }
 }
 
-class Chess {
-  constructor(fen, engine) {
-    this.engine = engine
-    return new Proxy(this, getHandler(fen))
-  }
-
-  async analysis() {
-    return await new Analysis(this.engine, this.fen).results()
-  }
+module.exports = function(fen, engine) {
+  const chess = new Chess(fen)
+  const handler = { get: get.bind(null, engine) }
+  return new Proxy(chess, handler)
 }
-
-module.exports = Chess
