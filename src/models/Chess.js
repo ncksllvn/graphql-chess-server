@@ -40,7 +40,7 @@ function getHandler(fen) {
   return {
     get(instance, property, _receiver) {
       if (aliases.has(property)) {
-        return Reflect.get(chessJs, aliases.get(property))()
+        return Reflect.get(chessJs, aliases.get(property))(...arguments)
       }
 
       if (extensions.has(property)) {
