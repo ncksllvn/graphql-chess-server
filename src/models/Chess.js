@@ -34,7 +34,7 @@ function getHandler(fen) {
   const chessJs = new ChessJS(fen)
 
   return {
-    get(instance, key) {
+    get(target, key) {
       if (aliases.has(key)) {
         const prop = Reflect.get(chessJs, aliases.get(key))
         return prop.call ? prop.call(chessJs, ...arguments) : prop
@@ -44,7 +44,7 @@ function getHandler(fen) {
         return extensions.get(key)(chessJs, ...arguments)
       }
 
-      return Reflect.get(instance, key)
+      return Reflect.get(target, key)
     }
   }
 }
