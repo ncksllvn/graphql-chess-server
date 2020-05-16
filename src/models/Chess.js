@@ -22,11 +22,11 @@ function get(engine, target, key) {
   }
 
   const translatedKey = aliases.has(key) ? aliases.get(key) : key
-  const value = Reflect.get(target, translatedKey)
+  const reflected = Reflect.get(target, translatedKey)
 
   log(`${key} -> target.${translatedKey}`)
 
-  return value
+  return reflected
 }
 
 function Chess(fen, engine) {
