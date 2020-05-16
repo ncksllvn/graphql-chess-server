@@ -13,20 +13,20 @@ const aliases = new Map([
 ])
 
 function get(engine, target, key) {
-  if (aliases.has(key)) {
-    return Reflect.get(target, aliases.get(key))
+  if (key == 'moves') {
+    return target.moves({ verbose: true })
   }
 
-  switch (key) {
-    case 'moves':
-      return target.moves({ verbose: true })
-
-    case 'analysis':
-      return new Analysis(engine, target.fen()).results()
-
-    default:
-      return Reflect.get(target, key)
+  if (key == 'analysis') {
+    return new Analysis(engine, target.fen()).results()
   }
+
+  const translatedKey = aliases.has(key) ? aliases.get(key) : key
+  const value = Reflect.get(target, translatedKey)
+
+  log(`${key} -> target.${translatedKey}`)
+
+  return value
 }
 
 function Chess(fen, engine) {
