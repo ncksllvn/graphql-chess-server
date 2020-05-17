@@ -2,39 +2,38 @@ const { Chess: ChessJS } = require('chess.js')
 const Analysis = require('./Analysis')
 const log = require('../utilities/log')('model/Chess')
 
-const aliases = {
-  gameOver: 'game_over',
-  inCheck: 'in_check',
-  inCheckmate: 'in_checkmate',
-  inDraw: 'in_draw',
-  inStalemate: 'in_stalemate',
-  insufficientMaterial: 'insufficient_material',
-  inThreefoldRepetition: 'in_threefold_repetition'
-}
-
-function aliasMethods(chess) {
-  return Object
-    .entries(aliases)
-    .reduce((result, [alias, key]) => {
-      return {
-        [alias]: chess[key],
-        ...result
-      }
-    }, chess)
-}
-
 function Chess(fen, engine) {
-  const chess = new ChessJS(fen)
-  const normalized = aliasMethods(chess)
-
-  return {
-    ...normalized,
-    engine,
-    moves: normalized.moves.bind(normalized, { verbose: true }),
+  const chess = {
+    gameOver() {
+      return this.game_over()
+    },
+    inCheck() {
+      return this.in_check()
+    },
+    inCheckmate() {
+      return this.in_checkmate()
+    },
+    inDraw() {
+      return this.in_draw()
+    },
+    inStalemate() {
+      return this.in_stalemate()
+    },
+    insufficientMaterial() {
+      return this.insufficient_material()
+    },
+    inThreefoldRepetition() {
+      return this.in_threefold_repetition()
+    },
+    moves() {
+      return super.moves({ verbose: true })
+    },
     analysis() {
-      return new Analysis(this.engine, this.fen()).results()
+      return new Analysis(engine, this.fen()).results()
     }
   }
+
+  return Object.setPrototypeOf(chess, new ChessJS(fen))
 }
 
 module.exports = Chess
