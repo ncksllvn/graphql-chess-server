@@ -1,0 +1,22 @@
+{
+  constants {
+    BISHOP
+    BLACK
+    KING
+    KNIGHT
+    PAWN
+    QUEEN
+    ROOK
+    SQUARES
+    WHITE
+    FLAGS {
+      NORMAL
+      CAPTURE
+      BIG_PAWN
+      EP_CAPTURE
+      PROMOTION
+      KSIDE_CASTLE
+      QSIDE_CASTLE
+    }
+  }
+}

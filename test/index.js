@@ -37,11 +37,22 @@ async function queryChessSchema() {
   assert.ok(result.valid, 'Response matches the JSON Schema')
 }
 
+async function queryConstantsSchema() {
+  const json = await sendRequest('constants')
+  assert.equal(json.error, undefined, 'No errors are present')
+
+  const schema = getSchema('constants')
+  const result = jsonSchema.validate(json, schema)
+  assert.ok(result.valid, 'Response matches the JSON Schema')
+}
+
 async function main() {
   const serverStarting = startServer()
 
   await assert.doesNotReject(serverStarting, 'The server starts')
+
   await queryChessSchema()
+  await queryConstantsSchema()
 
   const shutdown = await serverStarting
   const shuttingDown = shutdown()
