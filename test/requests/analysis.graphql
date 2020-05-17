@@ -1,0 +1,15 @@
+{
+  analysis(fen: "8/q1P1k3/8/8/8/8/6PP/7K w - - 0 1") {
+    results {
+      bestMove {
+        flags
+        from
+        to
+      }
+      ponderMove {
+        from
+        to
+      }
+    }
+  }
+}

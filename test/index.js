@@ -34,7 +34,7 @@ async function queryChessSchema() {
 
   const schema = getSchema('chess')
   const result = jsonSchema.validate(json, schema)
-  assert.ok(result.valid, 'Response matches the JSON Schema')
+  assert.ok(result.valid, 'Response matches the Chess JSON Schema')
 }
 
 async function queryConstantsSchema() {
@@ -43,7 +43,16 @@ async function queryConstantsSchema() {
 
   const schema = getSchema('constants')
   const result = jsonSchema.validate(json, schema)
-  assert.ok(result.valid, 'Response matches the JSON Schema')
+  assert.ok(result.valid, 'Response matches the Constants JSON Schema')
+}
+
+async function queryAnalysisSchema() {
+  const json = await sendRequest('analysis')
+  assert.equal(json.error, undefined, 'No errors are present')
+
+  const schema = getSchema('analysis')
+  const result = jsonSchema.validate(json, schema)
+  assert.ok(result.valid, 'Response matches the Analysis JSON Schema')
 }
 
 async function main() {
@@ -53,6 +62,7 @@ async function main() {
 
   await queryChessSchema()
   await queryConstantsSchema()
+  await queryAnalysisSchema()
 
   const shutdown = await serverStarting
   const shuttingDown = shutdown()
