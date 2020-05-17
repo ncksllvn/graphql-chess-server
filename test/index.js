@@ -5,7 +5,20 @@ const jsonSchema = require('json-schema')
 const fetch = require('node-fetch')
 const startServer = require('../src')
 
-const API_URL = `http://localhost:${process.env.PORT}`
+async function sendRequest(fileName) {
+  const api = `http://localhost:${process.env.PORT}`
+  const body = fs.readFileSync(
+    path.join(__dirname, 'requests', `${fileName}.graphql`)
+  ).toString()
+
+  const response = await fetch(api, {
+    body,
+    method: 'POST',
+    headers: {'Content-Type': 'application/graphql'}
+  })
+
+  return response.json()
+}
 
 function getSchema(fileName) {
   const rawString = fs.readFileSync(
@@ -16,17 +29,7 @@ function getSchema(fileName) {
 }
 
 async function queryChessSchema() {
-  const graphql = fs.readFileSync(
-    path.join(__dirname, 'requests/chess.graphql')
-  ).toString()
-
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    body: graphql,
-    headers: {'Content-Type': 'application/graphql'}
-  })
-
-  const json = await response.json()
+  const json = await sendRequest('chess')
   assert.equal(json.error, undefined, 'No errors are present')
 
   const schema = getSchema('chess')
