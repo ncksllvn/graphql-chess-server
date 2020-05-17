@@ -2,18 +2,10 @@ const log = require('../utilities/log')('Analysis')
 
 class Analysis {
   static parseMove(string) {
-    const [
-      fromColumn,
-      fromRow,
-      toColumn,
-      toRow,
-      ...flags
-    ] = string
-
     return {
-      from: `${fromColumn}${fromRow}`,
-      to: `${toColumn}${toRow}`,
-      flags: flags.join('')
+      from: string.slice(0, 2),
+      to: string.slice(2, 4),
+      flags: string.slice(4)
     }
   }
 
@@ -29,9 +21,11 @@ class Analysis {
       .position(this.fen)
       .go({ depth: 1 })
 
+    log(`received result bestmove ${result.bestmove}, ponder ${result.ponder}`)
+
     return {
-      bestMove: Analysis.parseMove(result.bestmove),
-      ponderMove: Analysis.parseMove(result.ponder)
+      bestMove: result.bestmove && Analysis.parseMove(result.bestmove),
+      ponderMove: result.ponder && Analysis.parseMove(result.ponder)
     }
   }
 }
