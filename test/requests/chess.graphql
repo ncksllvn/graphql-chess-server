@@ -1,0 +1,29 @@
+{
+  chess {
+    ascii
+    analysis {
+      bestMove {
+        from
+        to
+        flags
+      }
+      ponderMove {
+        from
+        to
+      }
+    }
+    fen
+    gameOver
+    inCheck
+    inCheckmate
+    inDraw
+    inStalemate
+    insufficientMaterial
+    inThreefoldRepetition
+    moves {
+      from
+      to
+    }
+    turn
+  }
+}
