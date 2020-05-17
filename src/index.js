@@ -42,8 +42,15 @@ async function main() {
 
   log(`accepting requests on port ${port}`)
 
-  return server
+  const shutdown = async () => {
+    log('shutting down server...')
+    await new Promise(resolve => server.close(resolve))
+    await engine.quit()
+  }
+
+  return shutdown
 }
 
 module.exports = main
-if (require.main) main()
+
+if (require.main == module) main()
