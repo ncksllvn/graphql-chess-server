@@ -1,0 +1,753 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+      {
+          "data": {
+              "chess": {
+                  "ascii": "   +------------------------+\n 8 | r  n  b  q  k  b  n  r |\n 7 | p  p  p  p  p  p  p  p |\n 6 | .  .  .  .  .  .  .  . |\n 5 | .  .  .  .  .  .  .  . |\n 4 | .  .  .  .  .  .  .  . |\n 3 | .  .  .  .  .  .  .  . |\n 2 | P  P  P  P  P  P  P  P |\n 1 | R  N  B  Q  K  B  N  R |\n   +------------------------+\n     a  b  c  d  e  f  g  h\n",
+                  "analysis": {
+                      "bestMove": {
+                          "from": "e2",
+                          "to": "e4",
+                          "flags": ""
+                      }
+                  },
+                  "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+                  "gameOver": false,
+                  "inCheck": false,
+                  "inCheckmate": false,
+                  "inDraw": false,
+                  "inStalemate": false,
+                  "insufficientMaterial": false,
+                  "inThreefoldRepetition": false,
+                  "moves": [
+                      {
+                          "color": "w",
+                          "from": "a2",
+                          "to": "a3",
+                          "promotion": "q"
+                      },
+                      {
+                          "color": "w",
+                          "from": "a2",
+                          "to": "a4",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "b2",
+                          "to": "b3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "b2",
+                          "to": "b4",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "c2",
+                          "to": "c3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "c2",
+                          "to": "c4",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "d2",
+                          "to": "d3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "d2",
+                          "to": "d4",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "e2",
+                          "to": "e3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "e2",
+                          "to": "e4",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "f2",
+                          "to": "f3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "f2",
+                          "to": "f4",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "g2",
+                          "to": "g3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "g2",
+                          "to": "g4",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "h2",
+                          "to": "h3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "h2",
+                          "to": "h4",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "b1",
+                          "to": "a3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "b1",
+                          "to": "c3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "g1",
+                          "to": "f3",
+                          "promotion": null
+                      },
+                      {
+                          "color": "w",
+                          "from": "g1",
+                          "to": "h3",
+                          "promotion": null
+                      }
+                  ],
+                  "turn": "w"
+              }
+          }
+      }
+  ],
+  "required": [
+      "data"
+  ],
+  "additionalProperties": true,
+  "properties": {
+      "data": {
+          "$id": "#/properties/data",
+          "type": "object",
+          "title": "The data schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "chess": {
+                      "ascii": "   +------------------------+\n 8 | r  n  b  q  k  b  n  r |\n 7 | p  p  p  p  p  p  p  p |\n 6 | .  .  .  .  .  .  .  . |\n 5 | .  .  .  .  .  .  .  . |\n 4 | .  .  .  .  .  .  .  . |\n 3 | .  .  .  .  .  .  .  . |\n 2 | P  P  P  P  P  P  P  P |\n 1 | R  N  B  Q  K  B  N  R |\n   +------------------------+\n     a  b  c  d  e  f  g  h\n",
+                      "analysis": {
+                          "bestMove": {
+                              "from": "e2",
+                              "to": "e4",
+                              "flags": ""
+                          }
+                      },
+                      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+                      "gameOver": false,
+                      "inCheck": false,
+                      "inCheckmate": false,
+                      "inDraw": false,
+                      "inStalemate": false,
+                      "insufficientMaterial": false,
+                      "inThreefoldRepetition": false,
+                      "moves": [
+                          {
+                              "color": "w",
+                              "from": "a2",
+                              "to": "a3",
+                              "promotion": "q"
+                          },
+                          {
+                              "color": "w",
+                              "from": "a2",
+                              "to": "a4",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "b2",
+                              "to": "b3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "b2",
+                              "to": "b4",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "c2",
+                              "to": "c3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "c2",
+                              "to": "c4",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "d2",
+                              "to": "d3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "d2",
+                              "to": "d4",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "e2",
+                              "to": "e3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "e2",
+                              "to": "e4",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "f2",
+                              "to": "f3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "f2",
+                              "to": "f4",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "g2",
+                              "to": "g3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "g2",
+                              "to": "g4",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "h2",
+                              "to": "h3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "h2",
+                              "to": "h4",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "b1",
+                              "to": "a3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "b1",
+                              "to": "c3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "g1",
+                              "to": "f3",
+                              "promotion": null
+                          },
+                          {
+                              "color": "w",
+                              "from": "g1",
+                              "to": "h3",
+                              "promotion": null
+                          }
+                      ],
+                      "turn": "w"
+                  }
+              }
+          ],
+          "required": [
+              "chess"
+          ],
+          "additionalProperties": true,
+          "properties": {
+              "chess": {
+                  "$id": "#/properties/data/properties/chess",
+                  "type": "object",
+                  "title": "The chess schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                      {
+                          "ascii": "   +------------------------+\n 8 | r  n  b  q  k  b  n  r |\n 7 | p  p  p  p  p  p  p  p |\n 6 | .  .  .  .  .  .  .  . |\n 5 | .  .  .  .  .  .  .  . |\n 4 | .  .  .  .  .  .  .  . |\n 3 | .  .  .  .  .  .  .  . |\n 2 | P  P  P  P  P  P  P  P |\n 1 | R  N  B  Q  K  B  N  R |\n   +------------------------+\n     a  b  c  d  e  f  g  h\n",
+                          "analysis": {
+                              "bestMove": {
+                                  "from": "e2",
+                                  "to": "e4",
+                                  "flags": ""
+                              }
+                          },
+                          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+                          "gameOver": false,
+                          "inCheck": false,
+                          "inCheckmate": false,
+                          "inDraw": false,
+                          "inStalemate": false,
+                          "insufficientMaterial": false,
+                          "inThreefoldRepetition": false,
+                          "moves": [
+                              {
+                                  "color": "w",
+                                  "from": "a2",
+                                  "to": "a3",
+                                  "promotion": "q"
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "a2",
+                                  "to": "a4",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "b2",
+                                  "to": "b3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "b2",
+                                  "to": "b4",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "c2",
+                                  "to": "c3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "c2",
+                                  "to": "c4",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "d2",
+                                  "to": "d3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "d2",
+                                  "to": "d4",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "e2",
+                                  "to": "e3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "e2",
+                                  "to": "e4",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "f2",
+                                  "to": "f3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "f2",
+                                  "to": "f4",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "g2",
+                                  "to": "g3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "g2",
+                                  "to": "g4",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "h2",
+                                  "to": "h3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "h2",
+                                  "to": "h4",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "b1",
+                                  "to": "a3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "b1",
+                                  "to": "c3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "g1",
+                                  "to": "f3",
+                                  "promotion": null
+                              },
+                              {
+                                  "color": "w",
+                                  "from": "g1",
+                                  "to": "h3",
+                                  "promotion": null
+                              }
+                          ],
+                          "turn": "w"
+                      }
+                  ],
+                  "required": [
+                      "ascii",
+                      "analysis",
+                      "fen",
+                      "gameOver",
+                      "inCheck",
+                      "inCheckmate",
+                      "inDraw",
+                      "inStalemate",
+                      "insufficientMaterial",
+                      "inThreefoldRepetition",
+                      "moves",
+                      "turn"
+                  ],
+                  "additionalProperties": true,
+                  "properties": {
+                      "ascii": {
+                          "$id": "#/properties/data/properties/chess/properties/ascii",
+                          "type": "string",
+                          "title": "The ascii schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                              "   +------------------------+\n 8 | r  n  b  q  k  b  n  r |\n 7 | p  p  p  p  p  p  p  p |\n 6 | .  .  .  .  .  .  .  . |\n 5 | .  .  .  .  .  .  .  . |\n 4 | .  .  .  .  .  .  .  . |\n 3 | .  .  .  .  .  .  .  . |\n 2 | P  P  P  P  P  P  P  P |\n 1 | R  N  B  Q  K  B  N  R |\n   +------------------------+\n     a  b  c  d  e  f  g  h\n"
+                          ]
+                      },
+                      "analysis": {
+                          "$id": "#/properties/data/properties/chess/properties/analysis",
+                          "type": "object",
+                          "title": "The analysis schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": {},
+                          "examples": [
+                              {
+                                  "bestMove": {
+                                      "from": "e2",
+                                      "to": "e4",
+                                      "flags": ""
+                                  }
+                              }
+                          ],
+                          "required": [
+                              "bestMove"
+                          ],
+                          "additionalProperties": true,
+                          "properties": {
+                              "bestMove": {
+                                  "$id": "#/properties/data/properties/chess/properties/analysis/properties/bestMove",
+                                  "type": "object",
+                                  "title": "The bestMove schema",
+                                  "description": "An explanation about the purpose of this instance.",
+                                  "default": {},
+                                  "examples": [
+                                      {
+                                          "from": "e2",
+                                          "to": "e4",
+                                          "flags": ""
+                                      }
+                                  ],
+                                  "required": [
+                                      "from",
+                                      "to",
+                                      "flags"
+                                  ],
+                                  "additionalProperties": true,
+                                  "properties": {
+                                      "from": {
+                                          "$id": "#/properties/data/properties/chess/properties/analysis/properties/bestMove/properties/from",
+                                          "type": "string",
+                                          "title": "The from schema",
+                                          "description": "An explanation about the purpose of this instance.",
+                                          "default": "",
+                                          "examples": [
+                                              "e2"
+                                          ]
+                                      },
+                                      "to": {
+                                          "$id": "#/properties/data/properties/chess/properties/analysis/properties/bestMove/properties/to",
+                                          "type": "string",
+                                          "title": "The to schema",
+                                          "description": "An explanation about the purpose of this instance.",
+                                          "default": "",
+                                          "examples": [
+                                              "e4"
+                                          ]
+                                      },
+                                      "flags": {
+                                          "$id": "#/properties/data/properties/chess/properties/analysis/properties/bestMove/properties/flags",
+                                          "type": "string",
+                                          "title": "The flags schema",
+                                          "description": "An explanation about the purpose of this instance.",
+                                          "default": "",
+                                          "examples": [
+                                              ""
+                                          ]
+                                      }
+                                  }
+                              }
+                          }
+                      },
+                      "fen": {
+                          "$id": "#/properties/data/properties/chess/properties/fen",
+                          "type": "string",
+                          "title": "The fen schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                              "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+                          ]
+                      },
+                      "gameOver": {
+                          "$id": "#/properties/data/properties/chess/properties/gameOver",
+                          "type": "boolean",
+                          "title": "The gameOver schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": false,
+                          "examples": [
+                              false
+                          ]
+                      },
+                      "inCheck": {
+                          "$id": "#/properties/data/properties/chess/properties/inCheck",
+                          "type": "boolean",
+                          "title": "The inCheck schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": false,
+                          "examples": [
+                              false
+                          ]
+                      },
+                      "inCheckmate": {
+                          "$id": "#/properties/data/properties/chess/properties/inCheckmate",
+                          "type": "boolean",
+                          "title": "The inCheckmate schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": false,
+                          "examples": [
+                              false
+                          ]
+                      },
+                      "inDraw": {
+                          "$id": "#/properties/data/properties/chess/properties/inDraw",
+                          "type": "boolean",
+                          "title": "The inDraw schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": false,
+                          "examples": [
+                              false
+                          ]
+                      },
+                      "inStalemate": {
+                          "$id": "#/properties/data/properties/chess/properties/inStalemate",
+                          "type": "boolean",
+                          "title": "The inStalemate schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": false,
+                          "examples": [
+                              false
+                          ]
+                      },
+                      "insufficientMaterial": {
+                          "$id": "#/properties/data/properties/chess/properties/insufficientMaterial",
+                          "type": "boolean",
+                          "title": "The insufficientMaterial schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": false,
+                          "examples": [
+                              false
+                          ]
+                      },
+                      "inThreefoldRepetition": {
+                          "$id": "#/properties/data/properties/chess/properties/inThreefoldRepetition",
+                          "type": "boolean",
+                          "title": "The inThreefoldRepetition schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": false,
+                          "examples": [
+                              false
+                          ]
+                      },
+                      "moves": {
+                          "$id": "#/properties/data/properties/chess/properties/moves",
+                          "type": "array",
+                          "title": "The moves schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": [],
+                          "examples": [
+                              [
+                                  {
+                                      "color": "w",
+                                      "from": "a2",
+                                      "to": "a3",
+                                      "promotion": "q"
+                                  },
+                                  {
+                                      "color": "w",
+                                      "from": "a2",
+                                      "to": "a4",
+                                      "promotion": null
+                                  }
+                              ]
+                          ],
+                          "additionalItems": true,
+                          "items": {
+                              "anyOf": [
+                                  {
+                                      "$id": "#/properties/data/properties/chess/properties/moves/items/anyOf/0",
+                                      "type": "object",
+                                      "title": "The first anyOf schema",
+                                      "description": "An explanation about the purpose of this instance.",
+                                      "default": {},
+                                      "examples": [
+                                          {
+                                              "color": "w",
+                                              "from": "a2",
+                                              "to": "a3",
+                                              "promotion": "q"
+                                          }
+                                      ],
+                                      "required": [
+                                          "color",
+                                          "from",
+                                          "to",
+                                          "promotion"
+                                      ],
+                                      "additionalProperties": true,
+                                      "properties": {
+                                          "color": {
+                                              "$id": "#/properties/data/properties/chess/properties/moves/items/anyOf/0/properties/color",
+                                              "type": "string",
+                                              "title": "The color schema",
+                                              "description": "An explanation about the purpose of this instance.",
+                                              "default": "",
+                                              "examples": [
+                                                  "w"
+                                              ]
+                                          },
+                                          "from": {
+                                              "$id": "#/properties/data/properties/chess/properties/moves/items/anyOf/0/properties/from",
+                                              "type": "string",
+                                              "title": "The from schema",
+                                              "description": "An explanation about the purpose of this instance.",
+                                              "default": "",
+                                              "examples": [
+                                                  "a2"
+                                              ]
+                                          },
+                                          "to": {
+                                              "$id": "#/properties/data/properties/chess/properties/moves/items/anyOf/0/properties/to",
+                                              "type": "string",
+                                              "title": "The to schema",
+                                              "description": "An explanation about the purpose of this instance.",
+                                              "default": "",
+                                              "examples": [
+                                                  "a3"
+                                              ]
+                                          },
+                                          "promotion": {
+                                              "$id": "#/properties/data/properties/chess/properties/moves/items/anyOf/0/properties/promotion",
+                                              "type": "string",
+                                              "title": "The promotion schema",
+                                              "description": "An explanation about the purpose of this instance.",
+                                              "default": "",
+                                              "examples": [
+                                                  "q"
+                                              ]
+                                          }
+                                      }
+                                  }
+                              ],
+                              "$id": "#/properties/data/properties/chess/properties/moves/items"
+                          }
+                      },
+                      "turn": {
+                          "$id": "#/properties/data/properties/chess/properties/turn",
+                          "type": "string",
+                          "title": "The turn schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                              "w"
+                          ]
+                      }
+                  }
+              }
+          }
+      }
+  }
+}

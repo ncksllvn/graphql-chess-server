@@ -7,10 +7,6 @@
         to
         flags
       }
-      ponderMove {
-        from
-        to
-      }
     }
     fen
     gameOver
@@ -21,8 +17,10 @@
     insufficientMaterial
     inThreefoldRepetition
     moves {
+      color
       from
       to
+      promotion
     }
     turn
   }

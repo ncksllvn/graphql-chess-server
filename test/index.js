@@ -7,6 +7,14 @@ const startServer = require('../src')
 
 const API_URL = `http://localhost:${process.env.PORT}`
 
+function getSchema(fileName) {
+  const rawString = fs.readFileSync(
+    path.join(__dirname, 'schemas', `${fileName}.json`)
+  ).toString()
+
+  return JSON.parse(rawString)
+}
+
 async function queryChessSchema() {
   const graphql = fs.readFileSync(
     path.join(__dirname, 'requests/chess.graphql')
@@ -19,8 +27,11 @@ async function queryChessSchema() {
   })
 
   const json = await response.json()
-
   assert.equal(json.error, undefined, 'No errors are present')
+
+  const schema = getSchema('chess')
+  const result = jsonSchema.validate(json, schema)
+  assert.ok(result.valid, 'Response matches the JSON Schema')
 }
 
 async function main() {
@@ -33,7 +44,6 @@ async function main() {
   const shuttingDown = shutdown()
 
   await assert.doesNotReject(shuttingDown, 'The server stops')
-
 }
 
 (async () => {
