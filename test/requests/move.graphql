@@ -1,0 +1,33 @@
+mutation {
+  move(input: {
+    fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    move: {
+      from: e2,
+      to: e4
+    }
+  }) {
+    ascii
+    analysis {
+      bestMove {
+        from
+        to
+        flags
+      }
+    }
+    fen
+    gameOver
+    inCheck
+    inCheckmate
+    inDraw
+    inStalemate
+    insufficientMaterial
+    inThreefoldRepetition
+    moves {
+      color
+      from
+      to
+      promotion
+    }
+    turn
+  }
+}

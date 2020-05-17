@@ -18,7 +18,7 @@ function getRoot(engine) {
       return new Chess(fen, engine)
     },
 
-    makeMove({ input: { fen, move } }) {
+    move({ input: { fen, move } }) {
       log(`makeMove - fen "${fen}", move "${move.from}${move.to}"`)
       const chess = new Chess(fen, engine)
       chess.move(move)

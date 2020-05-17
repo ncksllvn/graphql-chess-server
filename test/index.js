@@ -39,7 +39,7 @@ async function queryChessSchema() {
 
 async function queryConstantsSchema() {
   const json = await sendRequest('constants')
-  assert.equal(json.error, undefined, 'No errors are present')
+  assert.equal(json.errors, undefined, 'No errors are present')
 
   const schema = getSchema('constants')
   const result = jsonSchema.validate(json, schema)
@@ -48,11 +48,26 @@ async function queryConstantsSchema() {
 
 async function queryAnalysisSchema() {
   const json = await sendRequest('analysis')
-  assert.equal(json.error, undefined, 'No errors are present')
+  assert.equal(json.errors, undefined, 'No errors are present')
 
   const schema = getSchema('analysis')
   const result = jsonSchema.validate(json, schema)
   assert.ok(result.valid, 'Response matches the Analysis JSON Schema')
+}
+
+async function mutateMoveSchema() {
+  const json = await sendRequest('move')
+  assert.equal(json.errors, undefined, 'No errors are present')
+
+  const formatted = {
+    data: {
+      chess: json.data.move
+    }
+  }
+
+  const schema = getSchema('chess')
+  const result = jsonSchema.validate(formatted, schema)
+  assert.ok(result.valid, 'Response matches the Chess JSON Schema')
 }
 
 async function main() {
@@ -63,6 +78,7 @@ async function main() {
   await queryChessSchema()
   await queryConstantsSchema()
   await queryAnalysisSchema()
+  await mutateMoveSchema()
 
   const shutdown = await serverStarting
   const shuttingDown = shutdown()

@@ -186,5 +186,5 @@ type Mutation {
   """
   Apply a move to a game
   """
-  makeMove(input: MakeMoveInput): Chess
+  move(input: MakeMoveInput): Chess
 }
