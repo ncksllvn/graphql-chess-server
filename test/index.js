@@ -74,13 +74,13 @@ async function main() {
   const serverStarting = startServer()
 
   await assert.doesNotReject(serverStarting, 'The server starts')
+  const shutdown = await serverStarting
 
   await queryChessSchema()
   await queryConstantsSchema()
   await queryAnalysisSchema()
   await mutateMoveSchema()
 
-  const shutdown = await serverStarting
   const shuttingDown = shutdown()
 
   await assert.doesNotReject(shuttingDown, 'The server stops')
