@@ -15,7 +15,5 @@ nvm use
 cp sample.env .env
 
 # start the site
-npm start
-
-# -> localhost:4000
+npm start # -> localhost:4000
 ```
