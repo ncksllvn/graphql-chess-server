@@ -38,28 +38,28 @@ enum SQUARE {
 Represents a mapping of flag constants to their enum values
 """
 type Flags {
-  NORMAL: FLAG,
-  CAPTURE: FLAG,
-  BIG_PAWN: FLAG,
-  EP_CAPTURE: FLAG,
-  PROMOTION: FLAG,
-  KSIDE_CASTLE: FLAG,
-  QSIDE_CASTLE: FLAG
+  NORMAL: FLAG!
+  CAPTURE: FLAG!
+  BIG_PAWN: FLAG!
+  EP_CAPTURE: FLAG!
+  PROMOTION: FLAG!
+  KSIDE_CASTLE: FLAG!
+  QSIDE_CASTLE: FLAG!
 }
 
 """
 Represents a mapping of various constants to their enum values
 """
 type Constants {
-  BISHOP: PIECE_TYPE!,
-  BLACK: COLOR!,
-  FLAGS: Flags!,
-  KING: PIECE_TYPE!,
-  KNIGHT: PIECE_TYPE!,
-  PAWN: PIECE_TYPE!,
-  QUEEN: PIECE_TYPE!,
-  ROOK: PIECE_TYPE!,
-  SQUARES: [SQUARE!]!,
+  BISHOP: PIECE_TYPE!
+  BLACK: COLOR!
+  FLAGS: Flags!
+  KING: PIECE_TYPE!
+  KNIGHT: PIECE_TYPE!
+  PAWN: PIECE_TYPE!
+  QUEEN: PIECE_TYPE!
+  ROOK: PIECE_TYPE!
+  SQUARES: [SQUARE!]!
   WHITE: COLOR!
 }
 
