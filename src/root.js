@@ -5,6 +5,7 @@ const log = require('./utilities/log')('root')
 function getRoot(engine) {
   return {
     analysis({ fen }) {
+      log(`analysis - ${fen}`)
       return new Analysis(engine, fen)
     },
 
