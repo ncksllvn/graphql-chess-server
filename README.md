@@ -374,6 +374,7 @@ mutation {
   }
 }
 ```
+</details>
 
 ### Lookup by FEN
 Example below shows a board with a pawn positioned to be promoted in a move from C7 to C8.
