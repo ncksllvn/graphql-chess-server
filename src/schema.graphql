@@ -1,7 +1,7 @@
 """
 Represents the game pieces
 """
-enum PIECE { p r n b q k }
+enum PIECE_TYPE { p r n b q k }
 
 """
 Represents the piece colors
@@ -51,14 +51,14 @@ type Flags {
 Represents a mapping of various constants to their enum values
 """
 type Constants {
-  BISHOP: PIECE!,
+  BISHOP: PIECE_TYPE!,
   BLACK: COLOR!,
   FLAGS: Flags!,
-  KING: PIECE!,
-  KNIGHT: PIECE!,
-  PAWN: PIECE!,
-  QUEEN: PIECE!,
-  ROOK: PIECE!,
+  KING: PIECE_TYPE!,
+  KNIGHT: PIECE_TYPE!,
+  PAWN: PIECE_TYPE!,
+  QUEEN: PIECE_TYPE!,
+  ROOK: PIECE_TYPE!,
   SQUARES: [SQUARE!]!,
   WHITE: COLOR!
 }
@@ -67,12 +67,12 @@ type Constants {
 Describes a piece's movement to and from a square
 """
 type Move {
-  captured: PIECE
+  captured: PIECE_TYPE
   color: COLOR
   from: SQUARE!
   flags: String
-  piece: PIECE
-  promotion: PIECE
+  piece: PIECE_TYPE
+  promotion: PIECE_TYPE
   san: String
   to: SQUARE!
 }
@@ -84,6 +84,22 @@ type AnalysisResults {
 
 type Analysis {
   results: AnalysisResults
+}
+
+type Piece {
+  type: PIECE_TYPE
+  color: COLOR
+}
+
+type Board {
+  a: [Piece]
+  b: [Piece]
+  c: [Piece]
+  d: [Piece]
+  e: [Piece]
+  f: [Piece]
+  g: [Piece]
+  h: [Piece]
 }
 
 """
@@ -98,9 +114,12 @@ type Chess {
   """
   Returns the best move as calculated by the game engine
   """
-  # bestMove: Move
-
   analysis: AnalysisResults
+
+  """
+
+  """
+  board: Board
 
   """
   Returns the FEN string for the current position.
@@ -168,7 +187,7 @@ An input representing a move's position, destination, a promotion (if applicable
 input MoveInput {
   from: SQUARE!
   to: SQUARE!
-  promotion: PIECE
+  promotion: PIECE_TYPE
 }
 
 """

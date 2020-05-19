@@ -4,6 +4,10 @@ const log = require('../utilities/log')('model/Chess')
 
 function Chess(fen, engine) {
   const chess = {
+    board() {
+      const [ a, b, c, d, e, f, g, h ] = super.board()
+      return { a, b, c, d, e, f, g, h }
+    },
     gameOver() {
       return this.game_over()
     },
