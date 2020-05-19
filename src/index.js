@@ -53,4 +53,11 @@ async function main() {
 
 module.exports = main
 
-if (require.main == module) main()
+if (require.main == module) {
+  try {
+    main()
+  } catch(err) {
+    log(`failed to start due to error`)
+    console.error(err)
+  }
+}
