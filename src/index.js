@@ -11,6 +11,8 @@ const log = require('./utilities/log')('server')
 const getRoot = require('./root')
 
 async function main() {
+  log(`beginning startup`)
+
   const app = express()
 
   const schema = buildSchema(
@@ -19,15 +21,15 @@ async function main() {
     ).toString()
   )
 
-  log('starting engine...')
+  const enginePath = path.join(__dirname, '../bin', process.env.ENGINE)
 
-  const engine = new Engine(
-    path.join(__dirname, '../bin', process.env.ENGINE)
-  )
+  log(`starting engine from path ${enginePath}...`)
 
+  const engine = new Engine(enginePath)
   await engine.init()
 
   log('engine ready')
+  log('starting webserver...')
 
   const routeHandler = graphqlHTTP({
     rootValue: getRoot(engine),
