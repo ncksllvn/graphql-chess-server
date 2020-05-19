@@ -5,7 +5,8 @@ const path = require('path')
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
 const { buildSchema } = require('graphql')
-const { Engine } = require('node-uci')
+// const { Engine } = require('node-uci')
+const engine = require('./engine')
 
 const log = require('./utilities/log')('server')
 const getRoot = require('./root')
@@ -21,12 +22,13 @@ async function main() {
     ).toString()
   )
 
-  const enginePath = path.join(__dirname, '../bin', process.env.ENGINE)
+  // const enginePath = path.join(__dirname, '../bin', process.env.ENGINE)
 
-  log(`starting engine from path ${enginePath}...`)
+  log(`starting engine...`)
 
-  const engine = new Engine(enginePath)
-  await engine.init()
+  // const engine = new Engine(enginePath)
+  // await engine.init()
+  await engine.initialize()
 
   log('engine ready')
   log('starting webserver...')
