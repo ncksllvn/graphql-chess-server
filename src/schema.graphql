@@ -117,7 +117,7 @@ type Chess {
   analysis: AnalysisResults
 
   """
-
+  Returns a representation of the board with each row listed as a key
   """
   board: Board
 
