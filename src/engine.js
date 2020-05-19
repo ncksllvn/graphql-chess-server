@@ -4,7 +4,7 @@ const Stockfish = require('stockfish')
 // UCI protocol -
 // http://wbec-ridderkerk.nl/html/UCIProtocol.html
 
-const logger = {
+const EngineLogger = {
   log: log('engine:'),
   received: log('engine:received'),
   sent: log('engine:sent')
@@ -18,16 +18,18 @@ class Engine {
   }
 
   onMessage = (message) => {
-    logger.received(message)
+    EngineLogger.received(message)
     if (this.commandQueue.length) {
       const [{ onMessage }] = this.commandQueue
       onMessage(message)
     }
   }
 
-  postMessage(message) {
-    logger.sent(message)
-    this.stockfish.postMessage(message)
+  postMessage(messages) {
+    messages.forEach(message => {
+      EngineLogger.sent(message)
+      this.stockfish.postMessage(message)
+    })
   }
 
   issueCommand({ command, listener }) {
@@ -39,7 +41,7 @@ class Engine {
             const [{ command }] = this.commandQueue
             this.postMessage(command)
           }
-          resolve()
+          resolve(message)
         }
       }
 
@@ -54,26 +56,36 @@ class Engine {
     })
   }
 
-  findBestMove(fen) {
+  initialize() {
+    return this.issueCommand({
+      command: ['uci'],
+      listener: message => message == 'uciok'
+    })
+  }
 
+  findBestMove(fen, depth = 1) {
+    return this.issueCommand({
+      command: [
+        'ucinewgame',
+        `position "${fen}"`,
+        `go depth ${depth}`
+      ],
+      listener: (message) => message.startsWith('bestmove')
+    })
   }
 }
 
 (async () => {
   const engine = new Engine
 
-  await engine.issueCommand({
-    command: 'uci',
-    listener: message => message == 'uciok'
-  })
+  await engine.initialize()
 
-  engine.postMessage('ucinewgame')
-  engine.postMessage('position "rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1"')
+  const bunch = await Promise.all([
+    engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'),
+    engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'),
+    engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'),
+    engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'),
+  ])
 
-  await engine.issueCommand({
-    command: 'go depth 1',
-    listener: () => true
-  })
-
-
+  console.log(bunch)
 })()
