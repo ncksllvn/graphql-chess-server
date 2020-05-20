@@ -3,7 +3,9 @@ const path = require('path')
 const assert = require('assert').strict
 const jsonSchema = require('json-schema')
 const fetch = require('node-fetch')
+
 const startServer = require('../src')
+const testEngine = require('./engine')
 
 async function sendRequest(fileName) {
   const api = `http://localhost:${process.env.PORT}`
@@ -87,7 +89,10 @@ async function main() {
 }
 
 (async () => {
-  try { await main() }
+  try {
+    await testEngine()
+    await main()
+  }
   catch(err) {
     console.error(err)
     process.exit(1)

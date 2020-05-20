@@ -63,8 +63,8 @@ class Engine {
     })
   }
 
-  findBestMove(fen, depth = 1) {
-    return this.issueCommand({
+  async findBestMove(fen, depth = 1) {
+    const result = await this.issueCommand({
       command: [
         'ucinewgame',
         `position "${fen}"`,
@@ -72,20 +72,16 @@ class Engine {
       ],
       listener: (message) => message.startsWith('bestmove')
     })
+
+    const [label, bestMove] = result.split(' ')
+
+    return {
+      bestMove: {
+        from: bestMove.slice(0, 2),
+        to: bestMove.slice(2)
+      }
+    }
   }
 }
 
-(async () => {
-  const engine = new Engine
-
-  await engine.initialize()
-
-  const bunch = await Promise.all([
-    engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'),
-    engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'),
-    engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'),
-    engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'),
-  ])
-
-  console.log(bunch)
-})()
+module.exports = Engine
