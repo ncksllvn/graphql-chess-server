@@ -37,7 +37,6 @@ async function main() {
   const shutdown = async () => {
     log('shutting down server...')
     await new Promise(resolve => server.close(resolve))
-    await engine.quit()
   }
 
   return shutdown
