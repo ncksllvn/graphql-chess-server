@@ -5,7 +5,6 @@ const Stockfish = require('stockfish')
 // http://wbec-ridderkerk.nl/html/UCIProtocol.html
 
 const log = logger('engine')
-const logSent = logger('engine:sent')
 const logReceived = logger('engine:received')
 
 class Engine {
@@ -25,7 +24,6 @@ class Engine {
 
   postMessage(messages) {
     messages.forEach(message => {
-      logSent(message)
       this.stockfish.postMessage(message)
     })
   }
@@ -36,12 +34,14 @@ class Engine {
     return new Promise(resolve => {
       const onMessage = message => {
         if (listener(message)) {
+          log(`command finished with response "${message}"`)
+          resolve(message)
+
           this.commandQueue.pop()
           if (this.commandQueue.length) {
             const [{ command }] = this.commandQueue
             this.postMessage(command)
           }
-          resolve(message)
         }
       }
 
@@ -51,6 +51,7 @@ class Engine {
       })
 
       if (this.commandQueue.length === 1) {
+        log(`sending command ${command}`)
         this.postMessage(command)
       }
     })
