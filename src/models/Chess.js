@@ -1,6 +1,5 @@
 const { Chess: ChessJS } = require('chess.js')
 const Analysis = require('./Analysis')
-const log = require('../utilities/log')('model/Chess')
 
 function Chess(fen, engine) {
   const chess = {
