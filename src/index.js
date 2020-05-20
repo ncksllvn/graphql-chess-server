@@ -11,10 +11,7 @@ const log = require('./utilities/log')('server')
 const getRoot = require('./root')
 
 async function main() {
-  log(`beginning startup`)
-
   const app = express()
-
   const schema = buildSchema(
     fs.readFileSync(
       path.join(__dirname, 'schema.graphql')
@@ -22,12 +19,7 @@ async function main() {
   )
 
   const engine = new Engine()
-  log(`starting engine...`)
-
   await engine.initialize()
-
-  log('engine ready')
-  log('starting webserver...')
 
   const routeHandler = graphqlHTTP({
     rootValue: getRoot(engine),
@@ -51,13 +43,14 @@ async function main() {
   return shutdown
 }
 
-module.exports = main
-
 if (require.main == module) {
   try {
+    log(`beginning startup`)
     main()
   } catch(err) {
     log(`failed to start due to error`)
     console.error(err)
   }
 }
+
+module.exports = main

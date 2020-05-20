@@ -57,6 +57,7 @@ class Engine {
   }
 
   initialize() {
+    log(`starting engine...`)
     return this.issueCommand({
       command: ['uci'],
       listener: message => message == 'uciok'
