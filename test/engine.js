@@ -1,5 +1,5 @@
 const assert = require('assert').strict
-const Engine = require('../src/engine')
+const Engine = require('../src/utilities/engine')
 
 function assertShape({ bestMove: { from, to }}) {
   assert.ok(typeof from == 'string', 'from is a string')

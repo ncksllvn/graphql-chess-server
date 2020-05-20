@@ -6,7 +6,7 @@ const express = require('express')
 const graphqlHTTP = require('express-graphql')
 const { buildSchema } = require('graphql')
 // const { Engine } = require('node-uci')
-const engine = require('./engine')
+const engine = require('./utilities/engine')
 
 const log = require('./utilities/log')('server')
 const getRoot = require('./root')

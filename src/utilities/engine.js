@@ -1,4 +1,4 @@
-const log = require('./utilities/log')
+const log = require('./log')
 const Stockfish = require('stockfish')
 
 // UCI protocol -
