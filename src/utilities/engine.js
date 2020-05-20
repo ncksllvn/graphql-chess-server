@@ -37,7 +37,7 @@ class Engine {
           log(`command finished with response "${message}"`)
           resolve(message)
 
-          this.commandQueue.pop()
+          this.commandQueue.shift()
           if (this.commandQueue.length) {
             const [{ command }] = this.commandQueue
             this.postMessage(command)

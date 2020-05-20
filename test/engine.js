@@ -14,24 +14,24 @@ describe('engine', async () => {
   })
 
   it('finds moves', async () => {
-    const gettingBestMove = engine
-      .findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1')
+    const fen = 'rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1'
+    const gettingBestMove = engine.findBestMove(fen)
+
     assertShape(await gettingBestMove)
   })
 
   it('finds moves concurrently', async () => {
-    const gettingBestMove = engine
-    .findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1')
+    const fens = [
+      '8/q1P1k3/8/8/8/8/6PP/7K w - - 0 1',
+      'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2',
+      'rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1',
+      'rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2'
+    ]
 
-    await assert.doesNotReject(gettingBestMove, 'It gets the best move')
-    assertShape(await gettingBestMove)
+    const concurrent = await Promise.all(
+      fens.map(fen => engine.findBestMove(fen))
+    )
 
-    const concurrent = await Promise.all([
-      engine.findBestMove('8/q1P1k3/8/8/8/8/6PP/7K w - - 0 1'),
-      engine.findBestMove('rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1')
-    ])
-
-    const concurrentResults = await concurrent
-    concurrentResults.forEach(assertShape)
+    concurrent.forEach(assertShape)
   })
 })

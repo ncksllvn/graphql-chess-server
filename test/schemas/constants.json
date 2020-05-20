@@ -1,526 +1,105 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://example.com/example.json",
-  "type": "object",
-  "title": "The root schema",
-  "description": "The root schema comprises the entire JSON document.",
-  "default": {},
-  "examples": [
-      {
-          "data": {
-              "constants": {
-                  "BISHOP": "b",
-                  "BLACK": "b",
-                  "KING": "k",
-                  "KNIGHT": "n",
-                  "PAWN": "p",
-                  "QUEEN": "q",
-                  "ROOK": "r",
-                  "SQUARES": [
-                      "a8",
-                      "b8",
-                      "c8",
-                      "d8",
-                      "e8",
-                      "f8",
-                      "g8",
-                      "h8",
-                      "a7",
-                      "b7",
-                      "c7",
-                      "d7",
-                      "e7",
-                      "f7",
-                      "g7",
-                      "h7",
-                      "a6",
-                      "b6",
-                      "c6",
-                      "d6",
-                      "e6",
-                      "f6",
-                      "g6",
-                      "h6",
-                      "a5",
-                      "b5",
-                      "c5",
-                      "d5",
-                      "e5",
-                      "f5",
-                      "g5",
-                      "h5",
-                      "a4",
-                      "b4",
-                      "c4",
-                      "d4",
-                      "e4",
-                      "f4",
-                      "g4",
-                      "h4",
-                      "a3",
-                      "b3",
-                      "c3",
-                      "d3",
-                      "e3",
-                      "f3",
-                      "g3",
-                      "h3",
-                      "a2",
-                      "b2",
-                      "c2",
-                      "d2",
-                      "e2",
-                      "f2",
-                      "g2",
-                      "h2",
-                      "a1",
-                      "b1",
-                      "c1",
-                      "d1",
-                      "e1",
-                      "f1",
-                      "g1",
-                      "h1"
-                  ],
-                  "WHITE": "w",
-                  "FLAGS": {
-                      "NORMAL": "n",
-                      "CAPTURE": "c",
-                      "BIG_PAWN": "b",
-                      "EP_CAPTURE": "e",
-                      "PROMOTION": "p",
-                      "KSIDE_CASTLE": "k",
-                      "QSIDE_CASTLE": "q"
-                  }
-              }
-          }
-      }
-  ],
-  "required": [
-      "data"
-  ],
-  "additionalProperties": true,
-  "properties": {
-      "data": {
-          "$id": "#/properties/data",
-          "type": "object",
-          "title": "The data schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": {},
-          "examples": [
-              {
-                  "constants": {
-                      "BISHOP": "b",
-                      "BLACK": "b",
-                      "KING": "k",
-                      "KNIGHT": "n",
-                      "PAWN": "p",
-                      "QUEEN": "q",
-                      "ROOK": "r",
-                      "SQUARES": [
-                          "a8",
-                          "b8",
-                          "c8",
-                          "d8",
-                          "e8",
-                          "f8",
-                          "g8",
-                          "h8",
-                          "a7",
-                          "b7",
-                          "c7",
-                          "d7",
-                          "e7",
-                          "f7",
-                          "g7",
-                          "h7",
-                          "a6",
-                          "b6",
-                          "c6",
-                          "d6",
-                          "e6",
-                          "f6",
-                          "g6",
-                          "h6",
-                          "a5",
-                          "b5",
-                          "c5",
-                          "d5",
-                          "e5",
-                          "f5",
-                          "g5",
-                          "h5",
-                          "a4",
-                          "b4",
-                          "c4",
-                          "d4",
-                          "e4",
-                          "f4",
-                          "g4",
-                          "h4",
-                          "a3",
-                          "b3",
-                          "c3",
-                          "d3",
-                          "e3",
-                          "f3",
-                          "g3",
-                          "h3",
-                          "a2",
-                          "b2",
-                          "c2",
-                          "d2",
-                          "e2",
-                          "f2",
-                          "g2",
-                          "h2",
-                          "a1",
-                          "b1",
-                          "c1",
-                          "d1",
-                          "e1",
-                          "f1",
-                          "g1",
-                          "h1"
-                      ],
-                      "WHITE": "w",
-                      "FLAGS": {
-                          "NORMAL": "n",
-                          "CAPTURE": "c",
-                          "BIG_PAWN": "b",
-                          "EP_CAPTURE": "e",
-                          "PROMOTION": "p",
-                          "KSIDE_CASTLE": "k",
-                          "QSIDE_CASTLE": "q"
-                      }
-                  }
-              }
-          ],
-          "required": [
-              "constants"
-          ],
-          "additionalProperties": true,
-          "properties": {
-              "constants": {
-                  "$id": "#/properties/data/properties/constants",
-                  "type": "object",
-                  "title": "The constants schema",
-                  "description": "An explanation about the purpose of this instance.",
-                  "default": {},
-                  "examples": [
-                      {
-                          "BISHOP": "b",
-                          "BLACK": "b",
-                          "KING": "k",
-                          "KNIGHT": "n",
-                          "PAWN": "p",
-                          "QUEEN": "q",
-                          "ROOK": "r",
-                          "SQUARES": [
-                              "a8",
-                              "b8",
-                              "c8",
-                              "d8",
-                              "e8",
-                              "f8",
-                              "g8",
-                              "h8",
-                              "a7",
-                              "b7",
-                              "c7",
-                              "d7",
-                              "e7",
-                              "f7",
-                              "g7",
-                              "h7",
-                              "a6",
-                              "b6",
-                              "c6",
-                              "d6",
-                              "e6",
-                              "f6",
-                              "g6",
-                              "h6",
-                              "a5",
-                              "b5",
-                              "c5",
-                              "d5",
-                              "e5",
-                              "f5",
-                              "g5",
-                              "h5",
-                              "a4",
-                              "b4",
-                              "c4",
-                              "d4",
-                              "e4",
-                              "f4",
-                              "g4",
-                              "h4",
-                              "a3",
-                              "b3",
-                              "c3",
-                              "d3",
-                              "e3",
-                              "f3",
-                              "g3",
-                              "h3",
-                              "a2",
-                              "b2",
-                              "c2",
-                              "d2",
-                              "e2",
-                              "f2",
-                              "g2",
-                              "h2",
-                              "a1",
-                              "b1",
-                              "c1",
-                              "d1",
-                              "e1",
-                              "f1",
-                              "g1",
-                              "h1"
-                          ],
-                          "WHITE": "w",
-                          "FLAGS": {
-                              "NORMAL": "n",
-                              "CAPTURE": "c",
-                              "BIG_PAWN": "b",
-                              "EP_CAPTURE": "e",
-                              "PROMOTION": "p",
-                              "KSIDE_CASTLE": "k",
-                              "QSIDE_CASTLE": "q"
-                          }
-                      }
-                  ],
-                  "required": [
-                      "BISHOP",
-                      "BLACK",
-                      "KING",
-                      "KNIGHT",
-                      "PAWN",
-                      "QUEEN",
-                      "ROOK",
-                      "SQUARES",
-                      "WHITE",
-                      "FLAGS"
-                  ],
-                  "additionalProperties": true,
-                  "properties": {
-                      "BISHOP": {
-                          "$id": "#/properties/data/properties/constants/properties/BISHOP",
-                          "type": "string",
-                          "title": "The BISHOP schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": "",
-                          "examples": [
-                              "b"
-                          ]
-                      },
-                      "BLACK": {
-                          "$id": "#/properties/data/properties/constants/properties/BLACK",
-                          "type": "string",
-                          "title": "The BLACK schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": "",
-                          "examples": [
-                              "b"
-                          ]
-                      },
-                      "KING": {
-                          "$id": "#/properties/data/properties/constants/properties/KING",
-                          "type": "string",
-                          "title": "The KING schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": "",
-                          "examples": [
-                              "k"
-                          ]
-                      },
-                      "KNIGHT": {
-                          "$id": "#/properties/data/properties/constants/properties/KNIGHT",
-                          "type": "string",
-                          "title": "The KNIGHT schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": "",
-                          "examples": [
-                              "n"
-                          ]
-                      },
-                      "PAWN": {
-                          "$id": "#/properties/data/properties/constants/properties/PAWN",
-                          "type": "string",
-                          "title": "The PAWN schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": "",
-                          "examples": [
-                              "p"
-                          ]
-                      },
-                      "QUEEN": {
-                          "$id": "#/properties/data/properties/constants/properties/QUEEN",
-                          "type": "string",
-                          "title": "The QUEEN schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": "",
-                          "examples": [
-                              "q"
-                          ]
-                      },
-                      "ROOK": {
-                          "$id": "#/properties/data/properties/constants/properties/ROOK",
-                          "type": "string",
-                          "title": "The ROOK schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": "",
-                          "examples": [
-                              "r"
-                          ]
-                      },
-                      "SQUARES": {
-                          "$id": "#/properties/data/properties/constants/properties/SQUARES",
-                          "type": "array",
-                          "title": "The SQUARES schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": [],
-                          "examples": [
-                              [
-                                  "a8",
-                                  "b8"
-                              ]
-                          ],
-                          "additionalItems": true,
-                          "items": {
-                              "anyOf": [
-                                  {
-                                      "$id": "#/properties/data/properties/constants/properties/SQUARES/items/anyOf/0",
-                                      "type": "string",
-                                      "title": "The first anyOf schema",
-                                      "description": "An explanation about the purpose of this instance.",
-                                      "default": "",
-                                      "examples": [
-                                          "a8",
-                                          "b8"
-                                      ]
-                                  }
-                              ],
-                              "$id": "#/properties/data/properties/constants/properties/SQUARES/items"
-                          }
-                      },
-                      "WHITE": {
-                          "$id": "#/properties/data/properties/constants/properties/WHITE",
-                          "type": "string",
-                          "title": "The WHITE schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": "",
-                          "examples": [
-                              "w"
-                          ]
-                      },
-                      "FLAGS": {
-                          "$id": "#/properties/data/properties/constants/properties/FLAGS",
-                          "type": "object",
-                          "title": "The FLAGS schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": {},
-                          "examples": [
-                              {
-                                  "NORMAL": "n",
-                                  "CAPTURE": "c",
-                                  "BIG_PAWN": "b",
-                                  "EP_CAPTURE": "e",
-                                  "PROMOTION": "p",
-                                  "KSIDE_CASTLE": "k",
-                                  "QSIDE_CASTLE": "q"
-                              }
-                          ],
-                          "required": [
-                              "NORMAL",
-                              "CAPTURE",
-                              "BIG_PAWN",
-                              "EP_CAPTURE",
-                              "PROMOTION",
-                              "KSIDE_CASTLE",
-                              "QSIDE_CASTLE"
-                          ],
-                          "additionalProperties": true,
-                          "properties": {
-                              "NORMAL": {
-                                  "$id": "#/properties/data/properties/constants/properties/FLAGS/properties/NORMAL",
-                                  "type": "string",
-                                  "title": "The NORMAL schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": "",
-                                  "examples": [
-                                      "n"
-                                  ]
-                              },
-                              "CAPTURE": {
-                                  "$id": "#/properties/data/properties/constants/properties/FLAGS/properties/CAPTURE",
-                                  "type": "string",
-                                  "title": "The CAPTURE schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": "",
-                                  "examples": [
-                                      "c"
-                                  ]
-                              },
-                              "BIG_PAWN": {
-                                  "$id": "#/properties/data/properties/constants/properties/FLAGS/properties/BIG_PAWN",
-                                  "type": "string",
-                                  "title": "The BIG_PAWN schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": "",
-                                  "examples": [
-                                      "b"
-                                  ]
-                              },
-                              "EP_CAPTURE": {
-                                  "$id": "#/properties/data/properties/constants/properties/FLAGS/properties/EP_CAPTURE",
-                                  "type": "string",
-                                  "title": "The EP_CAPTURE schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": "",
-                                  "examples": [
-                                      "e"
-                                  ]
-                              },
-                              "PROMOTION": {
-                                  "$id": "#/properties/data/properties/constants/properties/FLAGS/properties/PROMOTION",
-                                  "type": "string",
-                                  "title": "The PROMOTION schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": "",
-                                  "examples": [
-                                      "p"
-                                  ]
-                              },
-                              "KSIDE_CASTLE": {
-                                  "$id": "#/properties/data/properties/constants/properties/FLAGS/properties/KSIDE_CASTLE",
-                                  "type": "string",
-                                  "title": "The KSIDE_CASTLE schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": "",
-                                  "examples": [
-                                      "k"
-                                  ]
-                              },
-                              "QSIDE_CASTLE": {
-                                  "$id": "#/properties/data/properties/constants/properties/FLAGS/properties/QSIDE_CASTLE",
-                                  "type": "string",
-                                  "title": "The QSIDE_CASTLE schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": "",
-                                  "examples": [
-                                      "q"
-                                  ]
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      }
-  }
+    "$id": "http://example.com/constants.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Constants",
+    "type": "object",
+    "required": ["data"],
+    "properties": {
+        "data": {
+            "type": "object",
+            "required": [
+                "constants"
+            ],
+            "properties": {
+                "constants": {
+                    "type": "object",
+                    "required": [
+                        "BISHOP",
+                        "BLACK",
+                        "KING",
+                        "KNIGHT",
+                        "PAWN",
+                        "QUEEN",
+                        "ROOK",
+                        "SQUARES",
+                        "WHITE",
+                        "FLAGS"
+                    ],
+                    "properties": {
+                        "BISHOP": {
+                            "type": "string",
+                            "enum": ["b"]
+                        },
+                        "BLACK": {
+                            "type": "string",
+                            "enum": ["b"]
+                        },
+                        "KING": {
+                            "type": "string",
+                            "enum": ["k"]
+                        },
+                        "KNIGHT": {
+                            "type": "string",
+                            "enum": ["n"]
+                        },
+                        "PAWN": {
+                            "type": "string",
+                            "enum": ["p"]
+                        },
+                        "QUEEN": {
+                            "type": "string",
+                            "enum": ["q"]
+                        },
+                        "ROOK": {
+                            "type": "string",
+                            "enum": ["r"]
+                        },
+                        "WHITE": {
+                            "type": "string",
+                            "enum": ["w"]
+                        },
+                        "FLAGS": {
+                            "type": "object",
+                            "properties": {
+                                "NORMAL": {
+                                    "type": "string",
+                                     "enum": ["n"]
+                                },
+                                "CAPTURE": {
+                                    "type": "string",
+                                     "enum": ["c"]
+                                },
+                                "BIG_PAWN": {
+                                    "type": "string",
+                                     "enum": ["b"]
+                                },
+                                "EP_CAPTURE": {
+                                    "type": "string",
+                                     "enum": ["e"]
+                                },
+                                "PROMOTION": {
+                                    "type": "string",
+                                     "enum": ["p"]
+                                },
+                                "KSIDE_CASTLE": {
+                                    "type": "string",
+                                     "enum": ["k"]
+                                },
+                                "QSIDE_CASTLE": {
+                                    "type": "string",
+                                     "enum": ["q"]
+                                }
+                            }
+                        },
+                        "squares": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

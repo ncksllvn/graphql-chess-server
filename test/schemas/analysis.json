@@ -1,210 +1,41 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://example.com/example.json",
-  "type": "object",
-  "title": "The root schema",
-  "description": "The root schema comprises the entire JSON document.",
-  "default": {},
-  "examples": [
-      {
-          "data": {
-              "analysis": {
-                  "results": {
-                      "bestMove": {
-                          "flags": "n",
-                          "from": "c7",
-                          "to": "c8"
-                      },
-                      "ponderMove": {
-                          "from": "e7",
-                          "to": "f6"
-                      }
-                  }
-              }
-          }
-      }
-  ],
-  "required": [
-      "data"
-  ],
-  "additionalProperties": true,
-  "properties": {
-      "data": {
-          "$id": "#/properties/data",
-          "type": "object",
-          "title": "The data schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": {},
-          "examples": [
-              {
-                  "analysis": {
-                      "results": {
-                          "bestMove": {
-                              "flags": "n",
-                              "from": "c7",
-                              "to": "c8"
-                          },
-                          "ponderMove": {
-                              "from": "e7",
-                              "to": "f6"
-                          }
-                      }
-                  }
-              }
-          ],
-          "required": [
-              "analysis"
-          ],
-          "additionalProperties": true,
-          "properties": {
-              "analysis": {
-                  "$id": "#/properties/data/properties/analysis",
-                  "type": "object",
-                  "title": "The analysis schema",
-                  "description": "An explanation about the purpose of this instance.",
-                  "default": {},
-                  "examples": [
-                      {
-                          "results": {
-                              "bestMove": {
-                                  "flags": "n",
-                                  "from": "c7",
-                                  "to": "c8"
-                              },
-                              "ponderMove": {
-                                  "from": "e7",
-                                  "to": "f6"
-                              }
-                          }
-                      }
-                  ],
-                  "required": [
-                      "results"
-                  ],
-                  "additionalProperties": true,
-                  "properties": {
-                      "results": {
-                          "$id": "#/properties/data/properties/analysis/properties/results",
-                          "type": "object",
-                          "title": "The results schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": {},
-                          "examples": [
-                              {
-                                  "bestMove": {
-                                      "flags": "n",
-                                      "from": "c7",
-                                      "to": "c8"
-                                  },
-                                  "ponderMove": {
-                                      "from": "e7",
-                                      "to": "f6"
-                                  }
-                              }
-                          ],
-                          "required": [
-                              "bestMove",
-                              "ponderMove"
-                          ],
-                          "additionalProperties": true,
-                          "properties": {
-                              "bestMove": {
-                                  "$id": "#/properties/data/properties/analysis/properties/results/properties/bestMove",
-                                  "type": "object",
-                                  "title": "The bestMove schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": {},
-                                  "examples": [
-                                      {
-                                          "flags": "n",
-                                          "from": "c7",
-                                          "to": "c8"
-                                      }
-                                  ],
-                                  "required": [
-                                      "flags",
-                                      "from",
-                                      "to"
-                                  ],
-                                  "additionalProperties": true,
-                                  "properties": {
-                                      "flags": {
-                                          "$id": "#/properties/data/properties/analysis/properties/results/properties/bestMove/properties/flags",
-                                          "type": "string",
-                                          "title": "The flags schema",
-                                          "description": "An explanation about the purpose of this instance.",
-                                          "default": "",
-                                          "examples": [
-                                              "n"
-                                          ]
-                                      },
-                                      "from": {
-                                          "$id": "#/properties/data/properties/analysis/properties/results/properties/bestMove/properties/from",
-                                          "type": "string",
-                                          "title": "The from schema",
-                                          "description": "An explanation about the purpose of this instance.",
-                                          "default": "",
-                                          "examples": [
-                                              "c7"
-                                          ]
-                                      },
-                                      "to": {
-                                          "$id": "#/properties/data/properties/analysis/properties/results/properties/bestMove/properties/to",
-                                          "type": "string",
-                                          "title": "The to schema",
-                                          "description": "An explanation about the purpose of this instance.",
-                                          "default": "",
-                                          "examples": [
-                                              "c8"
-                                          ]
-                                      }
-                                  }
-                              },
-                              "ponderMove": {
-                                  "$id": "#/properties/data/properties/analysis/properties/results/properties/ponderMove",
-                                  "type": "object",
-                                  "title": "The ponderMove schema",
-                                  "description": "An explanation about the purpose of this instance.",
-                                  "default": {},
-                                  "examples": [
-                                      {
-                                          "from": "e7",
-                                          "to": "f6"
-                                      }
-                                  ],
-                                  "required": [
-                                      "from",
-                                      "to"
-                                  ],
-                                  "additionalProperties": true,
-                                  "properties": {
-                                      "from": {
-                                          "$id": "#/properties/data/properties/analysis/properties/results/properties/ponderMove/properties/from",
-                                          "type": "string",
-                                          "title": "The from schema",
-                                          "description": "An explanation about the purpose of this instance.",
-                                          "default": "",
-                                          "examples": [
-                                              "e7"
-                                          ]
-                                      },
-                                      "to": {
-                                          "$id": "#/properties/data/properties/analysis/properties/results/properties/ponderMove/properties/to",
-                                          "type": "string",
-                                          "title": "The to schema",
-                                          "description": "An explanation about the purpose of this instance.",
-                                          "default": "",
-                                          "examples": [
-                                              "f6"
-                                          ]
-                                      }
-                                  }
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      }
-  }
+    "$id": "http://example.com/constants.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Constants",
+    "type": "object",
+    "required": ["data"],
+    "properties": {
+        "data": {
+            "type": "object",
+            "required": [
+                "analysis"
+            ],
+            "properties": {
+                "analysis": {
+                    "type": "object",
+                    "required": ["results"],
+                    "properties": {
+                        "results": {
+                            "type": "object",
+                            "required": ["bestMove"],
+                            "properties": {
+                                "bestMove": {
+                                    "type": "object",
+                                    "required": ["from", "to"],
+                                    "properties": {
+                                        "from": {
+                                            "type": "string"
+                                        },
+                                        "to": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

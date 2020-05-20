@@ -43,14 +43,14 @@
                             "type": "object",
                             "required": ["a", "b", "c", "d", "e", "f", "g", "h"],
                             "properties": {
-                                "a": { "type": "array", "items": { "$ref": "#/definitions/piece" } },
-                                "b": { "type": "array", "items": { "$ref": "#/definitions/piece" } },
-                                "c": { "type": "array", "items": { "$ref": "#/definitions/piece" } },
-                                "d": { "type": "array", "items": { "$ref": "#/definitions/piece" } },
-                                "e": { "type": "array", "items": { "$ref": "#/definitions/piece" } },
-                                "f": { "type": "array", "items": { "$ref": "#/definitions/piece" } },
-                                "g": { "type": "array", "items": { "$ref": "#/definitions/piece" } },
-                                "h": { "type": "array", "items": { "$ref": "#/definitions/piece" } }
+                                "a": {"$ref": "#/definitions/boardRow" },
+                                "b": {"$ref": "#/definitions/boardRow" },
+                                "c": {"$ref": "#/definitions/boardRow" },
+                                "d": {"$ref": "#/definitions/boardRow" },
+                                "e": {"$ref": "#/definitions/boardRow" },
+                                "f": {"$ref": "#/definitions/boardRow" },
+                                "g": {"$ref": "#/definitions/boardRow" },
+                                "h": {"$ref": "#/definitions/boardRow" }
                             }
                         },
                         "fen": {
@@ -84,7 +84,8 @@
                             }
                         },
                         "turn": {
-                            "type": "string"
+                            "type": "string",
+                            "enum": ["w", "b"]
                         }
                     }
                 }
@@ -92,6 +93,17 @@
         }
     },
     "definitions": {
+        "boardRow": {
+            "type": "array",
+            "maxLength": 8,
+            "minLength": 8,
+            "items": {
+                "oneOf": [
+                    { "type": "null" },
+                    { "$ref": "#/definitions/piece" }
+                ]
+            }
+        },
         "move": {
             "type": "object",
             "required": ["from", "to"],
