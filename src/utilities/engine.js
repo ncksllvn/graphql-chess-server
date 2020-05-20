@@ -1,14 +1,12 @@
-const log = require('./log')
+const logger = require('./log')
 const Stockfish = require('stockfish')
 
-// UCI protocol -
+// UCI protocol:
 // http://wbec-ridderkerk.nl/html/UCIProtocol.html
 
-const EngineLogger = {
-  log: log('engine:'),
-  received: log('engine:received'),
-  sent: log('engine:sent')
-}
+const log = logger('engine')
+const logSent = logger('engine:sent')
+const logReceived = logger('engine:received')
 
 class Engine {
   constructor() {
@@ -18,7 +16,7 @@ class Engine {
   }
 
   onMessage = (message) => {
-    EngineLogger.received(message)
+    logReceived(message)
     if (this.commandQueue.length) {
       const [{ onMessage }] = this.commandQueue
       onMessage(message)
@@ -27,12 +25,14 @@ class Engine {
 
   postMessage(messages) {
     messages.forEach(message => {
-      EngineLogger.sent(message)
+      logSent(message)
       this.stockfish.postMessage(message)
     })
   }
 
   issueCommand({ command, listener }) {
+    log(`enqueuing command ${command}`)
+
     return new Promise(resolve => {
       const onMessage = message => {
         if (listener(message)) {

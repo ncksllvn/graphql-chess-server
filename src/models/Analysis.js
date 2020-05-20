@@ -15,17 +15,14 @@ class Analysis {
   }
 
   async results() {
-    log(`calculating moves for fen "${this.fen}`)
-
-    const result = await this.engine.chain()
-      .position(this.fen)
-      .go({ depth: 1 })
-
-    log(`received result bestmove ${result.bestmove}, ponder ${result.ponder}`)
+    const {
+      bestMove,
+      ponderMove
+    } = await this.engine.findBestMove(this.fen)
 
     return {
-      bestMove: result.bestmove && Analysis.parseMove(result.bestmove),
-      ponderMove: result.ponder && Analysis.parseMove(result.ponder)
+      bestMove,
+      ponderMove,
     }
   }
 }
