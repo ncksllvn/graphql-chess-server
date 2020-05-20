@@ -181,9 +181,6 @@ type Query {
   chess(fen: String): Chess!
 }
 
-"""
-An input representing a move's position, destination, a promotion (if applicable)
-"""
 input MoveObjectInput {
   from: SQUARE!
   to: SQUARE!
@@ -195,16 +192,27 @@ An input representing a board via its FEN string and a move to apply to that boa
 """
 input MoveInput {
   fen: String!
+
+  """
+  An input representing a move's position, destination, and a promotion (if applicable)
+  """
   move: MoveObjectInput
+
+  """
+  A move represented in Standard Algebraic Notation (SAN)
+  """
   san: String
 }
 
 """
-Retrieve game data derived by a moved applied to a board FEN
+Manipulate and retrieve chess objects
 """
 type Mutation {
+
   """
-  Apply a move to a game
+  Attempts to make a move on the board, returning a move object if the move was legal, otherwise null.
+  The .move function can be called two ways, by passing a string in Standard Algebraic Notation (SAN).
+  Or by passing .move() a move object (only the 'to', 'from', and when necessary 'promotion', fields are needed)
   """
   move(input: MoveInput): Chess
 }

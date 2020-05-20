@@ -34,9 +34,9 @@ async function main() {
 
   log(`accepting requests on port ${port}`)
 
-  const shutdown = async () => {
+  const shutdown = () => {
     log('shutting down server...')
-    await new Promise(resolve => server.close(resolve))
+    return new Promise(resolve => server.close(resolve))
   }
 
   return shutdown
