@@ -113,6 +113,9 @@
                 },
                 "to": {
                     "type": "string"
+                },
+                "san": {
+                    "type": "string"
                 }
             }
         },

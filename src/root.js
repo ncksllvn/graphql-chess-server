@@ -19,12 +19,21 @@ function getRoot(engine) {
       return new Chess(fen, engine)
     },
 
-    move({ input: { fen, move } }) {
-      log(`makeMove - fen "${fen}", move "${move.from}${move.to}"`)
+    move({ input: { fen, san, move } }) {
       const chess = new Chess(fen, engine)
-      chess.move(move)
+
+      if (san) {
+        log(`move - fen "${fen}", san "${san}"`)
+        chess.move(san)
+      } else if (move) {
+        log(`move - fen "${fen}", move "${move.from}${move.to}"`)
+        chess.move(move)
+      } else {
+        throw new Error('Missing argument "san" or "move"')
+      }
+
       return chess
-    }
+    },
   }
 }
 

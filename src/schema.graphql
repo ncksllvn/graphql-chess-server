@@ -184,7 +184,7 @@ type Query {
 """
 An input representing a move's position, destination, a promotion (if applicable)
 """
-input MoveInput {
+input MoveObjectInput {
   from: SQUARE!
   to: SQUARE!
   promotion: PIECE_TYPE
@@ -193,9 +193,10 @@ input MoveInput {
 """
 An input representing a board via its FEN string and a move to apply to that board
 """
-input MakeMoveInput {
+input MoveInput {
   fen: String!
-  move: MoveInput!
+  move: MoveObjectInput
+  san: String
 }
 
 """
@@ -205,5 +206,5 @@ type Mutation {
   """
   Apply a move to a game
   """
-  move(input: MakeMoveInput): Chess
+  move(input: MoveInput): Chess
 }

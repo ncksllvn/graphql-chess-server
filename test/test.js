@@ -72,16 +72,31 @@ describe('schemas/analysis', () => {
 })
 
 describe('schemas/mutations/move', () => {
+  let firstResult
+
   it('matches the JSON schema', async () => {
     const json = await sendRequest('move')
 
-    const formatted = {
+    firstResult = {
       data: {
         chess: json.data.move
       }
     }
 
     const schema = getSchema('chess')
-    assertMatchesSchema(formatted, schema)
+    assertMatchesSchema(firstResult, schema)
+  })
+
+  describe('SAN input', () => {
+    it('accepts input using Standard Algebraic Notation (SAN)', async () => {
+      const json = await sendRequest('move-san')
+      const secondResult = {
+        data: {
+          chess: json.data.move
+        }
+      }
+
+      assert.deepStrictEqual(firstResult, secondResult, 'A SAN move produces the same result')
+    })
   })
 })
