@@ -22,6 +22,7 @@
   "homepage": "https://github.com/ncksllvn/chess-express#readme",
   "dependencies": {
     "chess.js": "^0.10.3",
+    "cors": "^2.8.5",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

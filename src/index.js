@@ -3,10 +3,11 @@ require('dotenv').config()
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const cors = require('cors')
 const graphqlHTTP = require('express-graphql')
 const { buildSchema } = require('graphql')
-const Engine = require('./utilities/engine')
 
+const Engine = require('./utilities/engine')
 const log = require('./utilities/log')('server')
 const getRoot = require('./root')
 
@@ -27,6 +28,7 @@ async function main() {
     schema
   })
 
+  app.use(cors())
   app.use('/', routeHandler)
 
   const port = process.env.PORT
