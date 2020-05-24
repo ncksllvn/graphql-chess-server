@@ -1,4 +1,4 @@
-enum FILE { a b d e f g h }
+enum FILE { a b c d e f g h }
 
 """
 Represents the game pieces
