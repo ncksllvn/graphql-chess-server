@@ -1,3 +1,5 @@
+enum FILE { a b d e f g h }
+
 """
 Represents the game pieces
 """
@@ -91,15 +93,14 @@ type Piece {
   color: COLOR
 }
 
-type Board {
-  a: [Piece]
-  b: [Piece]
-  c: [Piece]
-  d: [Piece]
-  e: [Piece]
-  f: [Piece]
-  g: [Piece]
-  h: [Piece]
+type RowSquare {
+  file: FILE!
+  piece: Piece
+}
+
+type Row {
+  rank: Int,
+  squares: [RowSquare]
 }
 
 """
@@ -119,7 +120,7 @@ type Chess {
   """
   Returns a representation of the board with each row listed as a key
   """
-  board: Board
+  board: [Row]
 
   """
   Returns the FEN string for the current position.

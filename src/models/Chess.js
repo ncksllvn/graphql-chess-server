@@ -4,8 +4,19 @@ const Analysis = require('./Analysis')
 function Chess(fen, engine) {
   const chess = {
     board() {
-      const [ a, b, c, d, e, f, g, h ] = super.board()
-      return { a, b, c, d, e, f, g, h }
+      const files = 'abcdefgh'
+      const rows = super.board()
+      return rows.map((pieces, rowIndex) => {
+        return {
+          rank: rowIndex + 1,
+          squares: pieces.map((piece, columnIndex) => {
+            return {
+              file: files[columnIndex],
+              piece
+            }
+          })
+        }
+      })
     },
     gameOver() {
       return this.game_over()
