@@ -5,10 +5,11 @@ function Chess(fen, engine) {
   const chess = {
     board() {
       const files = 'abcdefgh'
+      const ranks = 8
       const rows = super.board()
       return rows.map((pieces, rowIndex) => {
         return {
-          rank: rowIndex + 1,
+          rank: ranks - rowIndex,
           squares: pieces.map((piece, columnIndex) => {
             return {
               file: files[columnIndex],
