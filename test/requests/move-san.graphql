@@ -12,14 +12,14 @@ mutation {
       }
     }
     board {
-      a { type color }
-      b { type color }
-      c { type color }
-      d { type color }
-      e { type color }
-      f { type color }
-      g { type color }
-      h { type color }
+      rank
+      squares {
+        file
+        piece {
+          type
+          color
+        }
+      }
     }
     fen
     gameOver

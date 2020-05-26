@@ -40,17 +40,38 @@
                             }
                         },
                         "board": {
-                            "type": "object",
-                            "required": ["a", "b", "c", "d", "e", "f", "g", "h"],
+                            "type": "array",
+                            "maxItems": 8,
+                            "minItems": 8,
+                            "items": {
+                                "required": ["rank", "squares"],
+                                "properties": {
+                                    "rank": {
+                                        "type": "integer",
+                                        "enum": [1, 2, 3, 4, 5, 6, 7, 8]
+                                    },
+                                    "squares": {
+                                        "type": "array",
+                                        "items": {
+                                            "required": ["file", "piece"],
+                                            "properties": {
+                                                "file": {
+                                                    "type": "string",
+                                                    "enum": ["a", "b", "c", "d", "e", "f", "g", "h"]
+                                                },
+                                                "piece": {
+                                                    "oneOf": [
+                                                        { "type": "null" },
+                                                        { "$ref": "#/definitions/piece" }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
                             "properties": {
-                                "a": {"$ref": "#/definitions/boardRow" },
-                                "b": {"$ref": "#/definitions/boardRow" },
-                                "c": {"$ref": "#/definitions/boardRow" },
-                                "d": {"$ref": "#/definitions/boardRow" },
-                                "e": {"$ref": "#/definitions/boardRow" },
-                                "f": {"$ref": "#/definitions/boardRow" },
-                                "g": {"$ref": "#/definitions/boardRow" },
-                                "h": {"$ref": "#/definitions/boardRow" }
+
                             }
                         },
                         "fen": {
