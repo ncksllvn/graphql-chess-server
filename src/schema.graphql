@@ -1,3 +1,6 @@
+"""
+A letter indicating a column of the board
+"""
 enum FILE { a b c d e f g h }
 
 """
