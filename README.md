@@ -16,6 +16,16 @@ Here's an example of a chess board in the starting positions.
         flags
       }
     }
+    board {
+      rank
+      squares {
+        file
+        piece {
+          type
+          color
+        }
+      }
+    }
     fen
     gameOver
     inCheck
@@ -46,11 +56,405 @@ Here's an example of a chess board in the starting positions.
     "chess": {
       "analysis": {
         "bestMove": {
-          "from": "d2",
-          "to": "d4",
-          "flags": ""
+          "from": "e2",
+          "to": "e4",
+          "flags": null
         }
       },
+      "board": [
+        {
+          "rank": 8,
+          "squares": [
+            {
+              "file": "a",
+              "piece": {
+                "type": "r",
+                "color": "b"
+              }
+            },
+            {
+              "file": "b",
+              "piece": {
+                "type": "n",
+                "color": "b"
+              }
+            },
+            {
+              "file": "c",
+              "piece": {
+                "type": "b",
+                "color": "b"
+              }
+            },
+            {
+              "file": "d",
+              "piece": {
+                "type": "q",
+                "color": "b"
+              }
+            },
+            {
+              "file": "e",
+              "piece": {
+                "type": "k",
+                "color": "b"
+              }
+            },
+            {
+              "file": "f",
+              "piece": {
+                "type": "b",
+                "color": "b"
+              }
+            },
+            {
+              "file": "g",
+              "piece": {
+                "type": "n",
+                "color": "b"
+              }
+            },
+            {
+              "file": "h",
+              "piece": {
+                "type": "r",
+                "color": "b"
+              }
+            }
+          ]
+        },
+        {
+          "rank": 7,
+          "squares": [
+            {
+              "file": "a",
+              "piece": {
+                "type": "p",
+                "color": "b"
+              }
+            },
+            {
+              "file": "b",
+              "piece": {
+                "type": "p",
+                "color": "b"
+              }
+            },
+            {
+              "file": "c",
+              "piece": {
+                "type": "p",
+                "color": "b"
+              }
+            },
+            {
+              "file": "d",
+              "piece": {
+                "type": "p",
+                "color": "b"
+              }
+            },
+            {
+              "file": "e",
+              "piece": {
+                "type": "p",
+                "color": "b"
+              }
+            },
+            {
+              "file": "f",
+              "piece": {
+                "type": "p",
+                "color": "b"
+              }
+            },
+            {
+              "file": "g",
+              "piece": {
+                "type": "p",
+                "color": "b"
+              }
+            },
+            {
+              "file": "h",
+              "piece": {
+                "type": "p",
+                "color": "b"
+              }
+            }
+          ]
+        },
+        {
+          "rank": 6,
+          "squares": [
+            {
+              "file": "a",
+              "piece": null
+            },
+            {
+              "file": "b",
+              "piece": null
+            },
+            {
+              "file": "c",
+              "piece": null
+            },
+            {
+              "file": "d",
+              "piece": null
+            },
+            {
+              "file": "e",
+              "piece": null
+            },
+            {
+              "file": "f",
+              "piece": null
+            },
+            {
+              "file": "g",
+              "piece": null
+            },
+            {
+              "file": "h",
+              "piece": null
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "squares": [
+            {
+              "file": "a",
+              "piece": null
+            },
+            {
+              "file": "b",
+              "piece": null
+            },
+            {
+              "file": "c",
+              "piece": null
+            },
+            {
+              "file": "d",
+              "piece": null
+            },
+            {
+              "file": "e",
+              "piece": null
+            },
+            {
+              "file": "f",
+              "piece": null
+            },
+            {
+              "file": "g",
+              "piece": null
+            },
+            {
+              "file": "h",
+              "piece": null
+            }
+          ]
+        },
+        {
+          "rank": 4,
+          "squares": [
+            {
+              "file": "a",
+              "piece": null
+            },
+            {
+              "file": "b",
+              "piece": null
+            },
+            {
+              "file": "c",
+              "piece": null
+            },
+            {
+              "file": "d",
+              "piece": null
+            },
+            {
+              "file": "e",
+              "piece": null
+            },
+            {
+              "file": "f",
+              "piece": null
+            },
+            {
+              "file": "g",
+              "piece": null
+            },
+            {
+              "file": "h",
+              "piece": null
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "squares": [
+            {
+              "file": "a",
+              "piece": null
+            },
+            {
+              "file": "b",
+              "piece": null
+            },
+            {
+              "file": "c",
+              "piece": null
+            },
+            {
+              "file": "d",
+              "piece": null
+            },
+            {
+              "file": "e",
+              "piece": null
+            },
+            {
+              "file": "f",
+              "piece": null
+            },
+            {
+              "file": "g",
+              "piece": null
+            },
+            {
+              "file": "h",
+              "piece": null
+            }
+          ]
+        },
+        {
+          "rank": 2,
+          "squares": [
+            {
+              "file": "a",
+              "piece": {
+                "type": "p",
+                "color": "w"
+              }
+            },
+            {
+              "file": "b",
+              "piece": {
+                "type": "p",
+                "color": "w"
+              }
+            },
+            {
+              "file": "c",
+              "piece": {
+                "type": "p",
+                "color": "w"
+              }
+            },
+            {
+              "file": "d",
+              "piece": {
+                "type": "p",
+                "color": "w"
+              }
+            },
+            {
+              "file": "e",
+              "piece": {
+                "type": "p",
+                "color": "w"
+              }
+            },
+            {
+              "file": "f",
+              "piece": {
+                "type": "p",
+                "color": "w"
+              }
+            },
+            {
+              "file": "g",
+              "piece": {
+                "type": "p",
+                "color": "w"
+              }
+            },
+            {
+              "file": "h",
+              "piece": {
+                "type": "p",
+                "color": "w"
+              }
+            }
+          ]
+        },
+        {
+          "rank": 1,
+          "squares": [
+            {
+              "file": "a",
+              "piece": {
+                "type": "r",
+                "color": "w"
+              }
+            },
+            {
+              "file": "b",
+              "piece": {
+                "type": "n",
+                "color": "w"
+              }
+            },
+            {
+              "file": "c",
+              "piece": {
+                "type": "b",
+                "color": "w"
+              }
+            },
+            {
+              "file": "d",
+              "piece": {
+                "type": "q",
+                "color": "w"
+              }
+            },
+            {
+              "file": "e",
+              "piece": {
+                "type": "k",
+                "color": "w"
+              }
+            },
+            {
+              "file": "f",
+              "piece": {
+                "type": "b",
+                "color": "w"
+              }
+            },
+            {
+              "file": "g",
+              "piece": {
+                "type": "n",
+                "color": "w"
+              }
+            },
+            {
+              "file": "h",
+              "piece": {
+                "type": "r",
+                "color": "w"
+              }
+            }
+          ]
+        }
+      ],
       "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
       "gameOver": false,
       "inCheck": false,
