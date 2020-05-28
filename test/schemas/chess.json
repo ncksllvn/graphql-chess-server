@@ -36,6 +36,12 @@
                             "properties": {
                                 "bestMove": {
                                     "$ref": "#/definitions/move"
+                                },
+                                "ponderMove": {
+                                    "oneOf": [
+                                        { "type": "null" },
+                                        { "$ref": "#/definitions/move" }
+                                    ]
                                 }
                             }
                         },
