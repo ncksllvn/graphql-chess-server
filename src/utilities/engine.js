@@ -65,23 +65,37 @@ class Engine {
     })
   }
 
+  parseMove(move) {
+    return {
+      from: move.slice(0, 2),
+      to: move.slice(2, 4),
+      flags: move.slice(4)
+    }
+  }
+
   async findBestMove(fen, depth = 1) {
     const result = await this.issueCommand({
       command: [
+        'isready',
         'ucinewgame',
-        `position "${fen}"`,
+        `position fen ${fen}`,
         `go depth ${depth}`
       ],
       listener: (message) => message.startsWith('bestmove')
     })
 
-    const [label, bestMove] = result.split(' ')
+    const [
+      _label,
+      bestMove,
+      __label,
+      ponderMove
+    ] = result.split(' ')
+
+    log(this.parseMove(bestMove))
 
     return {
-      bestMove: {
-        from: bestMove.slice(0, 2),
-        to: bestMove.slice(2)
-      }
+      bestMove: this.parseMove(bestMove),
+      ponderMove: ponderMove && this.parseMove(ponderMove)
     }
   }
 }
