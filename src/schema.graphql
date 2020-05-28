@@ -83,7 +83,7 @@ type Move {
 }
 
 type AnalysisResults {
-  bestMove: Move
+  bestMove: Move!
   ponderMove: Move
 }
 
