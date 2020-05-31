@@ -96,8 +96,6 @@ class Engine {
       ponderMove
     ] = result.split(' ')
 
-    log(this.parseMove(bestMove))
-
     return {
       bestMove: this.parseMove(bestMove),
       ponderMove: ponderMove && this.parseMove(ponderMove)
