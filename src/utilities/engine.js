@@ -84,6 +84,11 @@ class Engine {
       listener: (message) => message.startsWith('bestmove')
     })
 
+    if (result === '(none)') {
+      log(`No best move found for fen "${fen}"`)
+      return null
+    }
+
     const [
       _label,
       bestMove,
