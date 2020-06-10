@@ -7,6 +7,8 @@ const Stockfish = require('stockfish')
 const log = logger('engine')
 const logReceived = logger('engine:received')
 
+const noBestMove = '(none)'
+
 class Engine {
   constructor() {
     this.commandQueue = []
@@ -84,21 +86,19 @@ class Engine {
       listener: (message) => message.startsWith('bestmove')
     })
 
-    if (result === '(none)') {
-      log(`No best move found for fen "${fen}"`)
-      return null
+    let [ ,bestMove, ,ponderMove] = result.split(' ')
+
+    if (bestMove === noBestMove) {
+      bestMove = null
+      ponderMove = null
+    } else {
+      bestMove = this.parseMove(bestMove)
+      ponderMove = ponderMove && this.parseMove(ponderMove)
     }
 
-    const [
-      _label,
-      bestMove,
-      __label,
-      ponderMove
-    ] = result.split(' ')
-
     return {
-      bestMove: this.parseMove(bestMove),
-      ponderMove: ponderMove && this.parseMove(ponderMove)
+      bestMove,
+      ponderMove
     }
   }
 }
